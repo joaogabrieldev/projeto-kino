@@ -1,7 +1,14 @@
-import React, { useState } from "react";
 import "./NavLink.css";
-import { motion, AnimatePresence } from "motion/react";
-import { useFloating, offset, flip, shift, autoUpdate } from "@floating-ui/react";
+
+import {
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useFloating,
+} from "@floating-ui/react";
+import { AnimatePresence, motion } from "motion/react";
+import React, { useState } from "react";
 
 type Subtitles = {
   title: string;
