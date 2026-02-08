@@ -1,0 +1,78 @@
+import React, { useState } from "react";
+import "./NavLink.css";
+import { motion, AnimatePresence } from "motion/react";
+import { useFloating, offset, flip, shift, autoUpdate } from "@floating-ui/react";
+
+type Subtitles = {
+  title: string;
+  slug: string;
+};
+
+interface INavLinkProps {
+  title: string;
+  subtitles?: Subtitles[];
+}
+
+const NavLink = ({ title, subtitles }: INavLinkProps) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  if (dropdownOpen) {
+    console.log("Está Aberto");
+  } else {
+    console.log("Está fechado");
+  }
+
+  const { refs, floatingStyles } = useFloating({
+    open: dropdownOpen,
+    onOpenChange: setDropdownOpen,
+    placement: "bottom-end",
+    whileElementsMounted: autoUpdate,
+    middleware: [
+      offset({
+        crossAxis: 70,
+        mainAxis: 2,
+      }),
+      flip(),
+      shift({ padding: 10 }),
+    ],
+  });
+  return (
+    <>
+      <li
+        ref={refs.setReference}
+        className="navItem"
+        onMouseEnter={() => setDropdownOpen(true)}
+        onMouseLeave={() => setDropdownOpen(false)}
+      >
+        {title.toUpperCase()}
+      </li>
+      <AnimatePresence>
+        {dropdownOpen && (
+          <motion.div
+            ref={refs.setFloating}
+            style={floatingStyles}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            onMouseEnter={() => setDropdownOpen(true)}
+            onMouseLeave={() => setDropdownOpen(false)}
+            className="dropdown-container"
+          >
+            <ul className="dropdown-list">
+              {subtitles?.map((item, index) => {
+                return (
+                  <li key={index} className="dropdown-item">
+                    <a href={item.slug}>{item.title}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default NavLink;

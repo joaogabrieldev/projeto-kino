@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Onest";
+  src: url("../../assets/fonts/Onest-VariableFont_wght.ttf");
+}
+
+.navItem {
+  font-family: "Onest";
+  font-weight: bold;
+  color: #c5a059;
+  border: 1px solid;
+  transition: color 0.3s ease-out;
+
+  &:hover {
+    color: #d4af37;
+    cursor: pointer;
+  }
+}
+
+.dropdown-container {
+  min-width: 150px;
+  background: rgba(115, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Onest";
+}
+
+.dropdown-item {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  & a {
+    display: block;
+    padding: 10px 16px;
+    color: #daac56;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transition: transform 0.15s ease-in;
+
+    & a {
+      color: #d4af37;
+      transform: translateX(4px);
+      transition: transform 0.15s ease-in;
+    }
+  }
+}
