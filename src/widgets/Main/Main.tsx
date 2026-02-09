@@ -1,10 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
+
+import BackdropImages from "@/components/BackdropImages/BackdropImages";
+import SkeletonBackdropImage from "@/components/SkeletonBackdropImage/SkeletonBackdropImage";
 
 const Main = () => {
   return (
-    <>
-      <div className="border-2 border-white">Capa</div>
-    </>
+    <main>
+      <Suspense fallback={<SkeletonBackdropImage />}>
+        <BackdropImages />
+      </Suspense>
+    </main>
   );
 };
 

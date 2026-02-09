@@ -1,6 +1,5 @@
 "use client";
 
-import { useDropdown } from "@/stores/useDropdownMenuStore";
 import "./NavItem.css";
 
 import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react";
@@ -33,7 +32,7 @@ const NavItem = ({ title, subtitles }: IProps) => {
     whileElementsMounted: autoUpdate,
     middleware: [
       offset({
-        crossAxis: 70,
+        crossAxis: 60,
         mainAxis: 2,
       }),
       flip(),

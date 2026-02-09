@@ -45,7 +45,7 @@ Texts: #E0E0E0
 
 Top 5
 
-- Flowbite (Melhor integração com o Astro até agora)
+- Flowbite 
 - Untitled UI
 - React Spectrum
 - UIVerse
