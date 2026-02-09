@@ -1,3 +1,5 @@
+"use client";
+
 import { Moon, Sun } from "lucide-react";
 import React, { useState } from "react";
 
@@ -10,11 +12,7 @@ const ModeButton = () => {
       onClick={() => setIsLight((prev) => !prev)}
     >
       <div>
-        {isLight ? (
-          <Moon className="stroke-yellow-500" />
-        ) : (
-          <Sun className="stroke-yellow-500" />
-        )}
+        {isLight ? <Moon className="stroke-yellow-500" /> : <Sun className="stroke-yellow-500" />}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: import.meta.env.PUBLIC_API_URL,
+  baseURL: process.env.PUBLIC_API_URL,
 
   timeout: 10000,
 
@@ -10,7 +10,7 @@ export const api = axios.create({
   },
 
   params: {
-    api_key: import.meta.env.PUBLIC_API_KEY,
+    api_key: process.env.PUBLIC_API_KEY,
     language: "pt-BR",
   },
 });

@@ -1,12 +1,9 @@
-import "./NavLink.css";
+"use client";
 
-import {
-  autoUpdate,
-  flip,
-  offset,
-  shift,
-  useFloating,
-} from "@floating-ui/react";
+import { useDropdown } from "@/stores/useDropdownMenuStore";
+import "./NavItem.css";
+
+import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 
@@ -15,12 +12,12 @@ type Subtitles = {
   slug: string;
 };
 
-interface INavLinkProps {
+interface IProps {
   title: string;
   subtitles?: Subtitles[];
 }
 
-const NavLink = ({ title, subtitles }: INavLinkProps) => {
+const NavItem = ({ title, subtitles }: IProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   if (dropdownOpen) {
@@ -82,4 +79,4 @@ const NavLink = ({ title, subtitles }: INavLinkProps) => {
   );
 };
 
-export default NavLink;
+export default NavItem;
