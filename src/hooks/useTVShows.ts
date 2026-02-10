@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 
-import type { MovieResponse } from "@/assets/types/movie";
+import type { TVShowResponse } from "@/assets/types/tv";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { api } from "@/services/api";
 
-export const usePopularMovies = () => {
+export const usePopularTVShow = () => {
   return useQuery({
-    queryKey: ["movie", "popular"],
+    queryKey: ["tv", "popular"],
     queryFn: async () => {
-      const { data } = await api.get<MovieResponse>(ENDPOINTS.MOVIES.POPULAR, {
+      const { data } = await api.get<TVShowResponse>(ENDPOINTS.TV.POPULAR, {
         params: {
           page: 1,
         },
@@ -17,6 +17,6 @@ export const usePopularMovies = () => {
       return data;
     },
 
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, //? 5 minutos,
   });
 };
