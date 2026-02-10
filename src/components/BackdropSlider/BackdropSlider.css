@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "AlteHaasGrotesk";
+  src: url("../../assets/fonts/AlteHaasGrotesk/AlteHaasGroteskBold.ttf");
+  font-weight: 900;
+}
+
+.movie-title {
+  font-family: "AlteHaasGrotesk";
+  font-weight: 900;
+}

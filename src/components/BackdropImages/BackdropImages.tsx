@@ -1,46 +1,52 @@
-import { ENDPOINTS } from "@/constants/endpoints";
-import { api } from "@/service/api";
+"use client";
+
+import { useMemo } from "react";
+
+import { MediaItem, MovieItem, TVItem } from "@/assets/types";
+import { usePopularMovies } from "@/hooks/useMovies";
+import { usePopularTVShow } from "@/hooks/useTVShows";
 
 import BackdropSlider from "../BackdropSlider/BackdropSlider";
 
-interface Movie {
-  id: number;
-  title?: string;
-  name?: string;
-  overview: string;
-  backdrop_path: string | null;
-  media_type?: "movie" | "tv";
+function shuffleArray<T>(array: T[]): T[] {
+  return [...array].sort(() => Math.random() - 0.5);
 }
 
-interface TMDBResponse {
-  results: Movie[];
-}
+export default function BackdropImages() {
+  const { data: moviesData, isLoading: isLoadingMovies } = usePopularMovies();
 
-export default async function BackdropImages() {
-  const fetchMovies = async (): Promise<Movie[]> => {
-    try {
-      const { data } = await api.get<TMDBResponse>(ENDPOINTS.MOVIES.TOP_RATED, {
-        params: { language: "pt-BR" },
-      });
+  const { data: tvShowData, isLoading: isLoadingTV } = usePopularTVShow();
 
-      const highRatedMovies = data.results.map((movie) => ({
-        ...movie,
-        media_type: "movie" as const,
-      }));
+  const content = useMemo(() => {
+    if (!moviesData && !tvShowData) return [];
 
-      //? Slice aplicado para o componente não ficar tão pesado
-      return highRatedMovies.slice(0, 15);
-    } catch (error) {
-      console.error("Erro ao carregar filmes:", error);
-      return [];
-    }
-  };
+    const movies = (moviesData?.results || []).map((movie) => ({
+      ...movie,
+      media_type: "movie" as const,
+    })) as MovieItem[];
 
-  const showMovies = await fetchMovies();
+    const shows = (tvShowData?.results || []).map((tv) => ({
+      ...tv,
+      media_type: "tv" as const,
+    })) as TVItem[];
 
-  if (showMovies.length === 0) {
+    const allContent: MediaItem[] = [...movies, ...shows];
+
+    const shuffledContent = shuffleArray(allContent);
+
+    //? Slice aplicado para o componente não ficar tão pesado
+    return shuffledContent.slice(0, 25);
+  }, [moviesData, tvShowData]);
+
+  const isLoading = isLoadingMovies || isLoadingTV;
+
+  if (isLoading) {
+    return <div className="h-[85vh] w-full animate-pulse bg-black" />;
+  }
+
+  if (content.length === 0) {
     return <div className="h-[85vh] w-full bg-black" />;
   }
 
-  return <BackdropSlider movies={showMovies} />;
+  return <BackdropSlider content={content} />;
 }
