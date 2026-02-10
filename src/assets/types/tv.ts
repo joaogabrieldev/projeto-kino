@@ -3,7 +3,7 @@ import type { Genre, ProductionCompany } from "./movie";
 
 export interface TVShow {
   id: number;
-  name: string; // <--- ATENÇÃO: Série usa 'name', Filme usa 'title'
+  name: string;
   original_name: string;
   overview: string;
   poster_path: string | null;
@@ -48,11 +48,11 @@ export interface TVShowDetails extends Omit<TVShow, "genre_ids"> {
     name: string;
     profile_path: string | null;
   }>;
-  episode_run_time: number[]; // ex: [45, 60] (duração média)
+  episode_run_time: number[];
   number_of_episodes: number;
   number_of_seasons: number;
-  seasons: Season[]; // Lista de temporadas
-  networks: Network[]; // Onde passa (ex: HBO, Netflix)
+  seasons: Season[];
+  networks: Network[];
   status: string;
   tagline: string;
   homepage: string;
