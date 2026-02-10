@@ -5,7 +5,7 @@ import SkeletonBackdropImage from "@/components/SkeletonBackdropImage/SkeletonBa
 
 const Main = () => {
   return (
-    <main>
+    <main className="mt-24">
       <Suspense fallback={<SkeletonBackdropImage />}>
         <BackdropImages />
       </Suspense>

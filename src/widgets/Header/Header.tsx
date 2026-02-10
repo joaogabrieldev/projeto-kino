@@ -9,7 +9,7 @@ import Nav from "../../components/Nav/Nav";
 
 const Header = () => {
   return (
-    <header className="flex flex-row items-center justify-center border bg-[#8b0000] py-6 select-none">
+    <header className="fixed top-0 left-0 z-50 flex w-full flex-row items-center justify-center bg-[#8b0000] py-6 shadow-2xl shadow-[#8b0000]/35 select-none">
       <div className="flex w-[20%] border-2 border-blue-500 pl-6">
         <ModeButton />
       </div>

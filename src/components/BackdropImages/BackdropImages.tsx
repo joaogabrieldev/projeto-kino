@@ -1,3 +1,4 @@
+import { ENDPOINTS } from "@/constants/endpoints";
 import { api } from "@/service/api";
 
 import BackdropSlider from "../BackdropSlider/BackdropSlider";
@@ -8,7 +9,7 @@ interface Movie {
   name?: string;
   overview: string;
   backdrop_path: string | null;
-  media_type: "movie" | "tv";
+  media_type?: "movie" | "tv";
 }
 
 interface TMDBResponse {
@@ -18,11 +19,17 @@ interface TMDBResponse {
 export default async function BackdropImages() {
   const fetchMovies = async (): Promise<Movie[]> => {
     try {
-      const { data } = await api.get<TMDBResponse>("/trending/all/day", {
+      const { data } = await api.get<TMDBResponse>(ENDPOINTS.MOVIES.TOP_RATED, {
         params: { language: "pt-BR" },
       });
 
-      return data?.results.slice(0, 15) || [];
+      const highRatedMovies = data.results.map((movie) => ({
+        ...movie,
+        media_type: "movie" as const,
+      }));
+
+      //? Slice aplicado para o componente não ficar tão pesado
+      return highRatedMovies.slice(0, 15);
     } catch (error) {
       console.error("Erro ao carregar filmes:", error);
       return [];
