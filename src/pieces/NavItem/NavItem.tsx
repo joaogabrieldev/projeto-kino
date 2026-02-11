@@ -19,12 +19,6 @@ interface IProps {
 const NavItem = ({ title, subtitles }: IProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  if (dropdownOpen) {
-    console.log("Está Aberto");
-  } else {
-    console.log("Está fechado");
-  }
-
   const { refs, floatingStyles } = useFloating({
     open: dropdownOpen,
     onOpenChange: setDropdownOpen,
