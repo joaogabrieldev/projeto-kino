@@ -15,7 +15,7 @@ const Header = () => {
       </div>
       <div className="flex w-[40%] items-center justify-center border-2 border-blue-500">
         <Link href="/">
-          <Image src={logo.src} alt="Kino Logo" width={160} height={160} />
+          <Image src={logo.src} alt="Kino Logo" width={120} height={120} />
         </Link>
       </div>
       <div className="w-[20%] border-2 border-yellow-500">

@@ -1,5 +1,6 @@
+import { AnimatePresence, motion } from "motion/react";
 import React from "react";
-import { motion, AnimatePresence } from "motion/react";
+
 import Header from "../Header/Header";
 import Main from "./../Main/Main";
 
