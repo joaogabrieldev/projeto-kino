@@ -17,8 +17,6 @@ const ReactQueryProvider = ({ children }: { children: ReactNode }) => {
       }),
   );
 
-  console.log("🟢 React Query Provider Montado!");
-
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 
