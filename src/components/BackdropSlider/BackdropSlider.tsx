@@ -2,7 +2,7 @@
 
 import "./BackdropSlider.css";
 
-import { Play } from "lucide-react";
+import { Info } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { MediaItem } from "@/assets/types";
+import { ENDPOINTS } from "@/constants/endpoints";
 import { ubuntu } from "@/utils/fonts";
 
 interface IBackdropSlider {
@@ -35,7 +36,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
 
   const imageBaseURL = "https://image.tmdb.org/t/p/original";
 
-  const imageSrc = `${imageBaseURL}${currentContent.backdrop_path}`;
+  const imageSrc = `${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.BACKDROP}${currentContent.backdrop_path}`;
 
   const title = "title" in currentContent ? currentContent.title : currentContent.name;
 
@@ -62,9 +63,9 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
             sizes="100vw"
           />
 
-          <div className="absolute inset-0 bg-linear-to-t from-[#141414] via-transparent to-black/40" />
+          <div className="absolute bottom-0 z-10 h-[80vh] w-full bg-linear-to-t from-[#141414] via-[#141414]/50 to-transparent" />
 
-          <div className="absolute inset-0 bg-linear-to-r from-[#141414] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#000000] via-transparent to-transparent blur-2xl" />
         </motion.div>
       </AnimatePresence>
 
@@ -81,7 +82,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
               {title}
             </h1>
 
-            <p className="mt-4 line-clamp-3 max-w-2xl text-lg text-gray-300 md:text-xl">
+            <p className="selection: mt-4 line-clamp-3 max-w-2xl text-lg text-gray-300 selection:bg-[#8b0000] selection:font-bold selection:text-yellow-500 md:text-xl">
               {currentContent.overview}
             </p>
           </motion.div>
@@ -90,13 +91,13 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
         <div className="border-2 border-red-500">
           <Link
             href={`/${mediaType}/${currentContent.id}`}
-            className="flex w-fit flex-row gap-1 border-2 border-white px-6 py-2 text-white"
+            className="flex w-fit flex-row gap-1 rounded-lg border-2 border-white bg-white px-6 py-2 text-black shadow-lg shadow-black"
           >
             <span>
-              <Play width={32} />
+              <Info width={32} className="antialiased" />
             </span>
 
-            <span className={`${ubuntu.className}`}>Ver Detalhes</span>
+            <span className={`${ubuntu.className} font-semibold`}>Ver Detalhes</span>
           </Link>
         </div>
       </div>
