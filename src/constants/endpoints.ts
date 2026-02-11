@@ -3,7 +3,7 @@ export const ENDPOINTS = {
     POPULAR: "/movie/popular",
     TOP_RATED: "/movie/top_rated",
     UPCOMING: "/movie/upcoming",
-    NOW_PLAYING: "/movie/now_playing", 
+    NOW_PLAYING: "/movie/now_playing",
     DETAILS: (id: number) => `/movie/${id}`,
     RECOMMENDATIONS: (id: number) => `/movie/${id}/recommendations`,
     CREDITS: (id: number) => `/movie/${id}/credits`,
@@ -11,9 +11,11 @@ export const ENDPOINTS = {
   TV: {
     POPULAR: "/tv/popular",
     TOP_RATED: "/tv/top_rated",
-    ON_THE_AIR: "/tv/on_the_air", 
-    AIRING_TODAY: "/tv/airing_today", 
+    ON_THE_AIR: "/tv/on_the_air",
+    AIRING_TODAY: "/tv/airing_today",
     DETAILS: (id: number) => `/tv/${id}`,
+    RECOMMENDATIONS: (id: number) => `/tv/${id}/recommendations`,
+    CREDITS: (id: number) => `/tv/${id}/aggregate_credits`,
   },
   PERSON: {
     POPULAR: "/person/popular",
@@ -30,7 +32,7 @@ export const ENDPOINTS = {
     TV: "/genre/tv/list",
   },
   IMAGES: {
-    BASE_URL: "https://image.tmdb.org/t/p",
+    BASE_URL: "https://image.tmdb.org/t/p/",
     SIZES: {
       POSTER: "w500",
       BACKDROP: "original",
