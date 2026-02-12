@@ -40,7 +40,7 @@ export const useTopRatedTVShows = () => {
 
 export const useOnTheAirTVShows = () => {
   return useQuery({
-    queryKey: ["tv", "popular"],
+    queryKey: ["tv", "on_the_air"],
     queryFn: async () => {
       const { data } = await api.get<TVShowResponse>(ENDPOINTS.TV.ON_THE_AIR, {
         params: {
