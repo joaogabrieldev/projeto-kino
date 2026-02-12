@@ -2,8 +2,13 @@
 
 import React, { useMemo } from "react";
 
-import { usePopularMovies, useTopRatedMovies } from "@/hooks/useMovies";
-import { usePopularTVShow, useTopRatedTVShows } from "@/hooks/useTVShows";
+import {
+  useNowPlayingMovies,
+  usePopularMovies,
+  useTopRatedMovies,
+  useUpcomingMovies,
+} from "@/hooks/useMovies";
+import { useOnTheAirTVShows, usePopularTVShow, useTopRatedTVShows } from "@/hooks/useTVShows";
 
 const ContentRows = () => {
   //? 1º Row
@@ -15,8 +20,13 @@ const ContentRows = () => {
   const { data: topRatedTVShowData } = useTopRatedTVShows();
 
   //? 3º Row
+  const { data: upcomingMoviesData } = useUpcomingMovies();
 
   //? 4º Row
+  const { data: nowPlayingMoviesData } = useNowPlayingMovies();
+  const {} = useOnTheAirTVShows();
+
+  //? 5º Row
 
   return <section>ContentRows</section>;
 };
