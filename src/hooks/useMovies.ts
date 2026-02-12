@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { data } from "motion/react-client";
 
 import type { MovieResponse } from "@/assets/types/movie";
 import { ENDPOINTS } from "@/constants/endpoints";
