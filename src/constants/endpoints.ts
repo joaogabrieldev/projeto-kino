@@ -27,9 +27,13 @@ export const ENDPOINTS = {
     TV: "/search/tv",
     PERSON: "/search/person",
   },
+  DISCOVER: {
+    SET_GENRE: (type: "movie" | "tv") => `/discover/${type}`,
+  },
   GENRES: {
     MOVIE: "/genre/movie/list",
     TV: "/genre/tv/list",
+    GET_GENRE_LIST: (type: "movie" | "tv") => `genre/${type}/list`,
   },
   IMAGES: {
     BASE_URL: "https://image.tmdb.org/t/p/",
