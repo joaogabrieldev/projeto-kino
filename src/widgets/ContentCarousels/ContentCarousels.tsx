@@ -8,7 +8,12 @@ import {
   useTopRatedMovies,
   useUpcomingMovies,
 } from "@/hooks/useMovies";
-import { useOnTheAirTVShows, usePopularTVShow, useTopRatedTVShows } from "@/hooks/useTVShows";
+import {
+  useAiringTodayTVShows,
+  useOnTheAirTVShows,
+  usePopularTVShow,
+  useTopRatedTVShows,
+} from "@/hooks/useTVShows";
 
 const ContentRows = () => {
   //? 1º Row
@@ -24,9 +29,12 @@ const ContentRows = () => {
 
   //? 4º Row
   const { data: nowPlayingMoviesData } = useNowPlayingMovies();
-  const {} = useOnTheAirTVShows();
+  const { data: onTheAirTVShowData } = useOnTheAirTVShows();
 
   //? 5º Row
+  const { data: airingTodayTVShowsData } = useAiringTodayTVShows();
+
+  //? 6º Row
 
   return <section>ContentRows</section>;
 };
