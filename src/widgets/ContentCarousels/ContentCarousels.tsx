@@ -14,6 +14,8 @@ import {
   usePopularTVShow,
   useTopRatedTVShows,
 } from "@/hooks/useTVShows";
+import { useMediaByGenre } from "@/hooks/useContent";
+import { MOVIE_GENRES, TV_GENRES } from "@/constants/genres";
 
 const ContentRows = () => {
   //? 1º Row
@@ -34,7 +36,11 @@ const ContentRows = () => {
   //? 5º Row
   const { data: airingTodayTVShowsData } = useAiringTodayTVShows();
 
-  //? 6º Row
+  //? 6º Row - Ação
+  const { data: actionGenreMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.ACTION);
+  const { data: actionGenreTVShowData } = useMediaByGenre("tv", TV_GENRES.ACTION_AND_ADVENTURE);
+
+  //? 7º Row - Sci-Fi
 
   return <section>ContentRows</section>;
 };
