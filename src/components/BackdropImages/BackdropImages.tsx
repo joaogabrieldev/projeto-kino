@@ -5,12 +5,9 @@ import { useMemo } from "react";
 import { MediaItem, MovieItem, TVItem } from "@/assets/types";
 import { usePopularMovies } from "@/hooks/useMovies";
 import { usePopularTVShow } from "@/hooks/useTVShows";
+import { shuffleArray } from "@/utils/utilitaries";
 
 import BackdropSlider from "../BackdropSlider/BackdropSlider";
-
-function shuffleArray<T>(array: T[]): T[] {
-  return [...array].sort(() => Math.random() - 0.5);
-}
 
 export default function BackdropImages() {
   const { data: moviesData, isLoading: isLoadingMovies } = usePopularMovies();

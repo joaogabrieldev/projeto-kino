@@ -34,8 +34,6 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
 
   if (!currentContent || !currentContent.backdrop_path) return null;
 
-  const imageBaseURL = "https://image.tmdb.org/t/p/original";
-
   const imageSrc = `${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.BACKDROP}${currentContent.backdrop_path}`;
 
   const title = "title" in currentContent ? currentContent.title : currentContent.name;
