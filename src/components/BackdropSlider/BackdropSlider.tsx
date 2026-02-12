@@ -95,7 +95,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
               <Info width={32} className="antialiased" />
             </span>
 
-            <span className={`${ubuntu.className} font-semibold`}>Ver Detalhes</span>
+            <span className={`${ubuntu.className} font-semibold select-none`}>Ver Detalhes</span>
           </Link>
         </div>
       </div>
