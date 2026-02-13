@@ -2,6 +2,8 @@
 
 import React, { useMemo } from "react";
 
+import { MOVIE_GENRES, TV_GENRES } from "@/constants/genres";
+import { useMediaByGenre } from "@/hooks/useContent";
 import {
   useNowPlayingMovies,
   usePopularMovies,
@@ -14,8 +16,6 @@ import {
   usePopularTVShow,
   useTopRatedTVShows,
 } from "@/hooks/useTVShows";
-import { useMediaByGenre } from "@/hooks/useContent";
-import { MOVIE_GENRES, TV_GENRES } from "@/constants/genres";
 
 const ContentRows = () => {
   //? 1º Row
@@ -41,6 +41,8 @@ const ContentRows = () => {
   const { data: actionGenreTVShowData } = useMediaByGenre("tv", TV_GENRES.ACTION_AND_ADVENTURE);
 
   //? 7º Row - Sci-Fi
+  const { data: sciFiGenreMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.SCIENCE_FICTION);
+  const { data: sciFiGenreTVShowsData } = useMediaByGenre("tv", TV_GENRES.SCI_FI_AND_FANTASY);
 
   return <section>ContentRows</section>;
 };
