@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
+import { MediaItem } from "@/assets/types";
 import type { MovieResponse } from "@/assets/types/movie";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { api } from "@/services/api";
@@ -15,6 +16,13 @@ export const usePopularMovies = () => {
       });
 
       return data;
+    },
+
+    select: (data) => {
+      return data.results.map((item) => ({
+        ...item,
+        media_type: "movie",
+      })) as MediaItem[];
     },
 
     staleTime: 1000 * 60 * 6, // 6 minutos
@@ -34,6 +42,13 @@ export const useTopRatedMovies = () => {
       return data;
     },
 
+    select: (data) => {
+      return data.results.map((item) => ({
+        ...item,
+        media_type: "movie",
+      })) as MediaItem[];
+    },
+
     staleTime: 1000 * 60 * 6,
   });
 };
@@ -49,6 +64,13 @@ export const useUpcomingMovies = () => {
       });
 
       return data;
+    },
+
+    select: (data) => {
+      return data.results.map((item) => ({
+        ...item,
+        media_type: "movie",
+      })) as MediaItem[];
     },
 
     staleTime: 1000 * 60 * 6,
@@ -68,6 +90,13 @@ export const useNowPlayingMovies = () => {
       return data;
     },
 
+    select: (data) => {
+      return data.results.map((item) => ({
+        ...item,
+        media_type: "movie",
+      })) as MediaItem[];
+    },
+
     staleTime: 1000 * 60 * 6,
   });
 };
@@ -78,6 +107,13 @@ export const useMovieRecommendations = (movieID: number) => {
     queryFn: async () => {
       const { data } = await api.get<MovieResponse>(ENDPOINTS.MOVIES.RECOMMENDATIONS(movieID));
       return data;
+    },
+
+    select: (data) => {
+      return data.results.map((item) => ({
+        ...item,
+        media_type: "movie",
+      })) as MediaItem[];
     },
 
     enabled: !!movieID && movieID > 0,
@@ -91,6 +127,13 @@ export const useMovieCredits = (movieID: number) => {
     queryFn: async () => {
       const { data } = await api.get<MovieResponse>(ENDPOINTS.MOVIES.CREDITS(movieID));
       return data;
+    },
+
+    select: (data) => {
+      return data.results.map((item) => ({
+        ...item,
+        media_type: "movie",
+      })) as MediaItem[];
     },
 
     enabled: !!movieID && movieID > 0,
