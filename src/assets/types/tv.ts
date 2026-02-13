@@ -1,4 +1,3 @@
-// src/types/tv.ts
 import type { Genre, ProductionCompany } from "./movie";
 
 export interface TVShow {

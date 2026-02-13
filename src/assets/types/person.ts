@@ -11,7 +11,7 @@ export interface Person {
   gender: number;
   known_for_department: string;
   profile_path: string | null;
-  known_for: (Movie | TVShow)[];
+  known_for?: (Movie | TVShow)[];
 }
 
 export interface PersonResponse {

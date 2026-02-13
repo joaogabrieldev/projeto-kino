@@ -1,11 +1,14 @@
 import { Movie } from "./movie";
+import { Person } from "./person";
 import { TVShow } from "./tv";
 
 export type MovieItem = Movie & { media_type: "movie" };
 
 export type TVItem = TVShow & { media_type: "tv" };
 
-export type MediaItem = MovieItem | TVItem;
+export type PersonItem = Person & { media_type: "person" };
+
+export type MediaItem = MovieItem | TVItem | PersonItem;
 
 export interface DiscoveryResponse {
   page: number;
@@ -29,6 +32,8 @@ export interface CastMember {
   character: string;
   profile_path: string | null;
   order: number;
+  gender?: number;
+  popularity?: number;
 }
 
 export interface CrewMember {
