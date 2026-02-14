@@ -12,10 +12,6 @@ export function mixContentTypeArray(
   const safeMovies = movies || [];
   const safeShows = tvShows || [];
 
-  const formattedMovies = safeMovies.map((item) => ({
-    ...item,
-    media_type: "movie" as const,
-  }));
 
   const formattedTVShows = safeShows.map((item) => ({
     ...item,
@@ -32,10 +28,7 @@ export function mixMoviesData(
   array2: MovieItem[],
   array3?: MovieItem[],
 ): MediaItem[] {
-
   const safeMovies1 = array1 || [];
   const safeMovies2 = array2 || [];
   const safeMovies3 = array3 || [];
-
-  
 }
