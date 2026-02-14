@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { CreditsResponse, MediaItem } from "@/assets/types";
+import { MediaItem } from "@/assets/types";
 import type { MovieResponse } from "@/assets/types/movie";
+import { MovieCreditsResponse } from "@/assets/types/movie";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { api } from "@/services/api";
+import { selectAsMovie, selectMovieCredits } from "@/utils/transformers";
 
 export const usePopularMovies = () => {
   return useQuery({
@@ -18,12 +20,7 @@ export const usePopularMovies = () => {
       return data;
     },
 
-    select: (data) => {
-      return data.results.map((item) => ({
-        ...item,
-        media_type: "movie",
-      })) as MediaItem[];
-    },
+    select: (data) => selectAsMovie(data),
 
     staleTime: 1000 * 60 * 6, // 6 minutos
   });
@@ -42,12 +39,7 @@ export const useTopRatedMovies = () => {
       return data;
     },
 
-    select: (data) => {
-      return data.results.map((item) => ({
-        ...item,
-        media_type: "movie",
-      })) as MediaItem[];
-    },
+    select: (data) => selectAsMovie(data),
 
     staleTime: 1000 * 60 * 6,
   });
@@ -66,12 +58,7 @@ export const useUpcomingMovies = () => {
       return data;
     },
 
-    select: (data) => {
-      return data.results.map((item) => ({
-        ...item,
-        media_type: "movie",
-      })) as MediaItem[];
-    },
+    select: (data) => selectAsMovie(data),
 
     staleTime: 1000 * 60 * 6,
   });
@@ -90,12 +77,7 @@ export const useNowPlayingMovies = () => {
       return data;
     },
 
-    select: (data) => {
-      return data.results.map((item) => ({
-        ...item,
-        media_type: "movie",
-      })) as MediaItem[];
-    },
+    select: (data) => selectAsMovie(data),
 
     staleTime: 1000 * 60 * 6,
   });
@@ -109,12 +91,7 @@ export const useMovieRecommendations = (movieID: number) => {
       return data;
     },
 
-    select: (data) => {
-      return data.results.map((item) => ({
-        ...item,
-        media_type: "movie",
-      })) as MediaItem[];
-    },
+    select: (data) => selectAsMovie(data),
 
     enabled: !!movieID && movieID > 0,
     staleTime: 1000 * 60 * 60,
@@ -125,18 +102,11 @@ export const useMovieCredits = (movieID: number) => {
   return useQuery({
     queryKey: ["movie-credits", movieID],
     queryFn: async () => {
-      const { data } = await api.get<CreditsResponse>(ENDPOINTS.MOVIES.CREDITS(movieID));
+      const { data } = await api.get<MovieCreditsResponse>(ENDPOINTS.MOVIES.CREDITS(movieID));
       return data;
     },
 
-    select: (data) => {
-      const cast = data.cast || [];
-
-      return cast.map((person) => ({
-        ...person,
-        media_type: "person",
-      })) as MediaItem[];
-    },
+    select: (data) => selectMovieCredits(data),
 
     enabled: !!movieID && movieID > 0,
     staleTime: 1000 * 60 * 60,

@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import type { TVShowResponse } from "@/assets/types/tv";
+import type { TvCreditsResponse, TVShowResponse } from "@/assets/types/tv";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { api } from "@/services/api";
+import { selectAsShow, selectTVShowCredits } from "@/utils/transformers";
 
 export const usePopularTVShow = () => {
   return useQuery({
@@ -17,6 +18,7 @@ export const usePopularTVShow = () => {
       return data;
     },
 
+    select: (data) => selectAsShow(data),
     staleTime: 1000 * 60 * 6, //? 6 minutos,
   });
 };
@@ -34,6 +36,7 @@ export const useTopRatedTVShows = () => {
       return data;
     },
 
+    select: (data) => selectAsShow(data),
     staleTime: 1000 * 60 * 6,
   });
 };
@@ -50,7 +53,7 @@ export const useOnTheAirTVShows = () => {
 
       return data;
     },
-
+    select: (data) => selectAsShow(data),
     staleTime: 1000 * 60 * 6,
   });
 };
@@ -67,6 +70,9 @@ export const useAiringTodayTVShows = () => {
 
       return data;
     },
+
+    select: (data) => selectAsShow(data),
+    staleTime: 1000 * 60 * 6,
   });
 };
 
@@ -78,6 +84,8 @@ export const useTVShowsRecommendations = (tvShowID: number) => {
       return data;
     },
 
+    select: (data) => selectAsShow(data),
+
     enabled: !!tvShowID && tvShowID > 0,
     staleTime: 1000 * 60 * 60,
   });
@@ -87,9 +95,11 @@ export const useTVShowsCredits = (tvShowID: number) => {
   return useQuery({
     queryKey: ["tv-credits", tvShowID],
     queryFn: async () => {
-      const { data } = await api.get<TVShowResponse>(ENDPOINTS.TV.CREDITS(tvShowID));
+      const { data } = await api.get<TvCreditsResponse>(ENDPOINTS.TV.CREDITS(tvShowID));
       return data;
     },
+
+    select: (data) => selectTVShowCredits(data),
 
     enabled: !!tvShowID && tvShowID > 0,
     staleTime: 1000 * 60 * 60,
