@@ -17,15 +17,9 @@ export default function BackdropImages() {
   const content = useMemo(() => {
     if (!moviesData && !tvShowData) return [];
 
-    const movies = (moviesData || []).map((movie) => ({
-      ...movie,
-      media_type: "movie" as const,
-    })) as MovieItem[];
+    const movies = moviesData ?? [];
 
-    const shows = (tvShowData?.results || []).map((tv) => ({
-      ...tv,
-      media_type: "tv" as const,
-    })) as TVItem[];
+    const shows = tvShowData ?? [];
 
     const allContent: MediaItem[] = [...movies, ...shows];
 
