@@ -34,7 +34,7 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
           loop: true,
         }}
       >
-        <CarouselContent className="-ml-2 py-4 md:-ml-4">
+        <CarouselContent className="-ml-2 py-4 select-none md:-ml-4">
           {data.map((item) => {
             const itemTitle = "title" in item ? item.title : item.name;
 
