@@ -1,7 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { select } from "motion/react-client";
 
-import { DiscoveryResponse, Genre, GenresResponse } from "@/assets/types";
+import { DiscoveryResponse, Genre, GenresResponse, MediaItem } from "@/assets/types";
+import { MovieResponse } from "@/assets/types/movie";
+import { TVShowResponse } from "@/assets/types/tv";
 import { ENDPOINTS } from "@/constants/endpoints";
+import { selectAsMovie, selectAsShow } from "@/utils/transformers";
 
 import { api } from "./../services/api";
 
@@ -37,6 +41,12 @@ export const useMediaByGenre = (type: "movie" | "tv", genreID: number[] | number
       });
 
       return data;
+    },
+
+    select: (data): MediaItem[] => {
+      return type === "movie"
+        ? selectAsMovie(data as unknown as MovieResponse)
+        : selectAsShow(data as unknown as TVShowResponse);
     },
 
     enabled: Array.isArray(genreID) ? genreID.length > 0 : !!genreID,
