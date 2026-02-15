@@ -2,6 +2,7 @@
 
 import React, { useMemo } from "react";
 
+import ContentRow from "@/components/ContentRow/ContentRow";
 import { MOVIE_GENRES, TV_GENRES } from "@/constants/genres";
 import { useMediaByGenre } from "@/hooks/useContent";
 import {
@@ -16,6 +17,7 @@ import {
   usePopularTVShow,
   useTopRatedTVShows,
 } from "@/hooks/useTVShows";
+import { mixContentTypeArray } from "@/utils/utilitaries";
 
 const ContentRows = () => {
   //? 1º Row
@@ -44,7 +46,13 @@ const ContentRows = () => {
   const { data: sciFiGenreMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.SCIENCE_FICTION);
   const { data: sciFiGenreTVShowsData } = useMediaByGenre("tv", TV_GENRES.SCI_FI_AND_FANTASY);
 
-  return <section>ContentRows</section>;
+  const sciFiContent = mixContentTypeArray(sciFiGenreMoviesData, sciFiGenreTVShowsData, 60);
+
+  return (
+    <section className="-mt-28">
+      <ContentRow title="Teste" data={sciFiContent} />
+    </section>
+  );
 };
 
 export default ContentRows;
