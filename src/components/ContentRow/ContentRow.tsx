@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -12,12 +14,12 @@ import {
 } from "@/components/ui/carousel";
 import { ENDPOINTS } from "@/constants/endpoints";
 
-interface MovieRowProps {
+interface ContentRowProps {
   title: string;
   data: MediaItem[];
 }
 
-const MovieRow = ({ title, data }: MovieRowProps) => {
+const ContentRow = ({ title, data }: ContentRowProps) => {
   if (!data || data.length === 0) return null;
 
   return (
@@ -41,9 +43,9 @@ const MovieRow = ({ title, data }: MovieRowProps) => {
                 key={item.id}
                 className="basis-1/2 pl-2 md:basis-1/3 md:pl-4 lg:basis-1/4 xl:basis-1/5"
               >
-                <div className="relative aspect-video cursor-pointer overflow-hidden rounded-sm bg-zinc-900 shadow-md transition-transform duration-300 hover:z-50 hover:scale-110">
+                <div className="relative aspect-2/3 cursor-pointer overflow-hidden rounded-sm bg-zinc-900 shadow-md transition-transform duration-300 hover:z-50 hover:scale-105">
                   <Image
-                    src={`${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.poster_path || item.backdrop_path}`}
+                    src={`${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.media_type !== "person" ? item.poster_path : null}`}
                     alt={itemTitle}
                     fill
                     className="object-cover"
@@ -54,15 +56,16 @@ const MovieRow = ({ title, data }: MovieRowProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="absolute top-0 left-0 z-40 h-full w-12 translate-x-0 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
-          <ChevronLeft className="h-8 w-8" />
+        <CarouselPrevious className="absolute top-60 left-0 z-40 h-full w-12 -translate-x-12 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
+          <ChevronLeft className="h-40 w-40" />
         </CarouselPrevious>
+
+        <CarouselNext className="absolute top-69 right-0 z-40 h-130 w-12 translate-x-12 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
+          <ChevronRight className="h-40 w-40" />
+        </CarouselNext>
       </Carousel>
-      <CarouselNext className="absolute top-0 right-0 z-40 h-full w-12 translate-x-0 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
-        <ChevronRight className="h-8 w-8" />
-      </CarouselNext>
     </div>
   );
 };
 
-export default MovieRow;
+export default ContentRow;

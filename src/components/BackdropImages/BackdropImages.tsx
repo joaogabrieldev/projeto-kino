@@ -2,10 +2,9 @@
 
 import { useMemo } from "react";
 
-import { MediaItem, MovieItem, TVItem } from "@/assets/types";
 import { usePopularMovies } from "@/hooks/useMovies";
 import { usePopularTVShow } from "@/hooks/useTVShows";
-import { shuffleArray } from "@/utils/utilitaries";
+import { mixContentTypeArray } from "@/utils/utilitaries";
 
 import BackdropSlider from "../BackdropSlider/BackdropSlider";
 
@@ -15,18 +14,7 @@ export default function BackdropImages() {
   const { data: tvShowData, isLoading: isLoadingTV } = usePopularTVShow();
 
   const content = useMemo(() => {
-    if (!moviesData && !tvShowData) return [];
-
-    const movies = moviesData ?? [];
-
-    const shows = tvShowData ?? [];
-
-    const allContent: MediaItem[] = [...movies, ...shows];
-
-    const shuffledContent = shuffleArray(allContent);
-
-    //? Slice aplicado para o componente não ficar tão pesado
-    return shuffledContent.slice(0, 25);
+    return mixContentTypeArray(moviesData, tvShowData);
   }, [moviesData, tvShowData]);
 
   const isLoading = isLoadingMovies || isLoadingTV;
