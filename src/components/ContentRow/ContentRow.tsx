@@ -23,7 +23,7 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <div className="group relative mb-8 space-y-2 px-4 md:px-12">
+    <div className="group relative mb-8 space-y-2 border-2 border-white px-4 md:px-12">
       <h2 className="text-lg font-semibold text-white transition-colors hover:text-gray-500">
         {title}
       </h2>
@@ -56,11 +56,11 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="absolute top-60 left-0 z-40 h-full w-12 -translate-x-12 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
+        <CarouselPrevious className="absolute top-55 left-0 z-40 h-full w-12 -translate-x-12 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
           <ChevronLeft className="h-40 w-40" />
         </CarouselPrevious>
 
-        <CarouselNext className="absolute top-69 right-0 z-40 h-130 w-12 translate-x-12 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
+        <CarouselNext className="absolute top-55 right-0 z-40 h-full w-12 translate-x-12 rounded-none border-none bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/80 hover:text-white disabled:hidden">
           <ChevronRight className="h-40 w-40" />
         </CarouselNext>
       </Carousel>
