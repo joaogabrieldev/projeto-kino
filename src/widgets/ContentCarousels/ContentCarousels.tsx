@@ -46,7 +46,9 @@ const ContentRows = () => {
   const { data: sciFiGenreMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.SCIENCE_FICTION);
   const { data: sciFiGenreTVShowsData } = useMediaByGenre("tv", TV_GENRES.SCI_FI_AND_FANTASY);
 
-  const sciFiContent = mixContentTypeArray(sciFiGenreMoviesData, sciFiGenreTVShowsData, 60);
+  const sciFiContent = mixContentTypeArray(sciFiGenreMoviesData, sciFiGenreTVShowsData?.filter(item => {
+    item.popularity 
+  }), 60);
 
   return (
     <section className="-mt-28">
