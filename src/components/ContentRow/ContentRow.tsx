@@ -23,8 +23,8 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <div className="group relative mb-8 space-y-2 border-2 border-white px-4 md:px-12">
-      <h2 className="text-lg font-semibold text-white transition-colors hover:text-gray-500">
+    <div className="group relative my-8 mb-8 space-y-2 border-2 border-white px-4 md:px-12">
+      <h2 className={`text-2xl font-semibold text-white transition-colors hover:text-gray-500 ${}`}>
         {title}
       </h2>
       <Carousel
