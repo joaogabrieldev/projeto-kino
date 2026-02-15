@@ -46,9 +46,11 @@ const ContentRows = () => {
   const { data: sciFiGenreMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.SCIENCE_FICTION);
   const { data: sciFiGenreTVShowsData } = useMediaByGenre("tv", TV_GENRES.SCI_FI_AND_FANTASY);
 
-  const sciFiContent = mixContentTypeArray(sciFiGenreMoviesData, sciFiGenreTVShowsData?.filter(item => {
-    item.popularity 
-  }), 60);
+  const sciFiContent = mixContentTypeArray(
+    sciFiGenreMoviesData?.slice().sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0)),
+    sciFiGenreTVShowsData?.slice().sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0)),
+    60,
+  );
 
   return (
     <section className="-mt-28">
