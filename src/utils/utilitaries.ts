@@ -8,7 +8,7 @@ export function shuffleArray<T>(array: T[]): T[] {
 export function mixContentTypeArray(
   movies: MediaItem[] | null | undefined,
   tvShows: MediaItem[] | null | undefined,
-  limit: number = 25,
+  limit: number,
 ): MediaItem[] {
   const safeMovies = movies ?? [];
   const safeShows = tvShows ?? [];
