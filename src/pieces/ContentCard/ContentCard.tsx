@@ -1,7 +1,8 @@
-import { CarouselItem } from "@/components/ui/carousel";
-import React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+import { CarouselItem } from "@/components/ui/carousel";
 
 interface IContentCardProps {
   itemID: number | string;
