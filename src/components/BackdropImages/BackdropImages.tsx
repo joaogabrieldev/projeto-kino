@@ -14,7 +14,15 @@ export default function BackdropImages() {
   const { data: tvShowData, isLoading: isLoadingTV } = usePopularTVShow();
 
   const content = useMemo(() => {
-    return mixContentTypeArray(moviesData, tvShowData);
+    const moviesWithDescription = moviesData?.filter((movie) => {
+      return "overview" in movie && movie.overview && movie.overview.trim() !== "";
+    });
+
+    const tvShowsWithDescription = tvShowData?.filter(
+      (show) => "overview" in show && show.overview && show.overview.trim() !== "",
+    );
+
+    return mixContentTypeArray(moviesWithDescription, tvShowsWithDescription, 25);
   }, [moviesData, tvShowData]);
 
   const isLoading = isLoadingMovies || isLoadingTV;

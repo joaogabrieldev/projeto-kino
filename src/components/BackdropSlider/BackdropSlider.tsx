@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import { MediaItem } from "@/assets/types";
 import { ENDPOINTS } from "@/constants/endpoints";
+import { defaultSelection } from "@/utils/defaults";
 import { ubuntu } from "@/utils/fonts";
 
 interface IBackdropSlider {
@@ -32,7 +33,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
 
   const currentContent = content[index];
 
-  if (!currentContent || !currentContent.backdrop_path) return null;
+  if (!currentContent || !("backdrop_path" in currentContent)) return null;
 
   const imageSrc = `${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.BACKDROP}${currentContent.backdrop_path}`;
 
@@ -41,7 +42,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
   const mediaType = currentContent.media_type;
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative z-0 h-screen w-full overflow-hidden bg-black">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentContent.id}
@@ -80,7 +81,9 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
               {title}
             </h1>
 
-            <p className="selection: mt-4 line-clamp-3 max-w-2xl text-lg text-gray-300 selection:bg-[#8b0000] selection:font-bold selection:text-yellow-500 md:text-xl">
+            <p
+              className={`mt-4 line-clamp-3 max-w-2xl text-lg text-gray-300 md:text-xl ${defaultSelection}`}
+            >
               {currentContent.overview}
             </p>
           </motion.div>
