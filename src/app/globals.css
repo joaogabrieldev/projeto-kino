@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /*' Next Variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -45,41 +46,9 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --font-alte-Haas-Grotesk: var(--font-alte-Haas-Grotesk), sans-serif;
-}
 
-body {
-  background-color: #141414;
-}
-
-@layer utilities {
-  .animate-fade-image {
-    animation: fadeImage 1.5s ease-in-out forwards;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 1s ease-out forwards;
-  }
-}
-
-@keyframes fadeImage {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.6;
-  }
-}
-
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /** My Variables  */
+  --font-alteHaasGrotesk: var(--font-alteHaas-base), sans-serif;
 }
 
 :root {
@@ -115,6 +84,10 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+
+  /** My Variables  */
+  --scrollbar-track-background: #141414;
+  --scrollbar-thumb: #a10000;
 }
 
 .dark {
@@ -149,4 +122,70 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /** My Variables  */
+
+  --scrollbar-track-background: #141414;
+  --scrollbar-thumb: #d4af37;
+}
+
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track-background);
+  scrollbar-width: auto;
+}
+::-webkit-scrollbar {
+  width: 14px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+  border: 2px solid var(--scrollbar-track-background);
+
+  &:hover {
+    background: var(--scrollbar-thumb);
+  }
+}
+
+body {
+  background-color: #141414;
+}
+
+@layer utilities {
+  .animate-fade-image {
+    animation: fadeImage 1.5s ease-in-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 1s ease-out forwards;
+  }
+}
+
+@keyframes fadeImage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
