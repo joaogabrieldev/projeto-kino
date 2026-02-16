@@ -89,7 +89,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
           </motion.div>
         </AnimatePresence>
 
-        <div className="border-2 border-red-500">
+        <div>
           <Link
             href={`/${mediaType}/${currentContent.id}`}
             className="flex w-fit flex-row gap-1 rounded-lg border-2 border-white bg-white px-6 py-2 text-black shadow-lg shadow-black"
