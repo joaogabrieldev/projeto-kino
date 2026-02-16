@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/carousel";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { defaultSelection } from "@/utils/defaults";
+import { onest } from "@/utils/fonts";
+
 import ContentCard from "./../../pieces/ContentCard/ContentCard";
 
 interface ContentRowProps {
@@ -26,10 +28,10 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <div className="group relative h-fit space-y-2 border-2 border-white px-4 py-8 md:px-12">
+    <div className="group relative h-fit space-y-2 px-4 py-8 md:px-12">
       <div>
         <h2
-          className={`font-alteHaasGrotesk z-100 text-2xl font-bold text-white transition-colors select-auto hover:text-gray-500 ${defaultSelection}`}
+          className={`${onest.className} z-100 cursor-default text-2xl font-bold text-white transition-colors select-auto ${defaultSelection}`}
         >
           {title}
         </h2>
@@ -42,13 +44,15 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
         }}
         className=""
       >
-        <CarouselContent className="-ml-2 border-2 border-white py-4 select-none md:-ml-4">
-          {data.map((item) => {
+        <CarouselContent className="-ml-2 py-4 select-none md:-ml-4">
+          {data.map((item, index) => {
             const itemTitle = "title" in item ? item.title : item.name;
+
+            const mediaType = "title" in item ? "movie" : "tv";
 
             return (
               <ContentCard
-                key={item.id}
+                key={`${item.id}-${mediaType}-${index}`}
                 itemID={item.id}
                 linkHref={item.media_type !== "person" ? `/${item.media_type}/${item.id}` : ""}
                 imageSrc={`${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.media_type !== "person" ? item.poster_path : null}`}

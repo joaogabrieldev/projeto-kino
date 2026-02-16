@@ -12,6 +12,8 @@ export default function BackdropImages() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+     
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
 
@@ -28,7 +30,7 @@ export default function BackdropImages() {
       (show) => "overview" in show && show.overview && show.overview.trim() !== "",
     );
 
-    return mixContentTypeArray(moviesWithDescription, tvShowsWithDescription, 25);
+    return mixContentTypeArray(25, moviesWithDescription, tvShowsWithDescription);
   }, [moviesData, tvShowData]);
 
   const isLoading = isLoadingMovies || isLoadingTV;
