@@ -22,3 +22,9 @@ export const alteHaasGrotesk = localFont({
   variable: "--font-alteHaas-base",
   display: "swap",
 });
+
+export const onest = localFont({
+  src: "../assets/fonts/Onest/Onest-VariableFont_wght.ttf",
+  variable: "--font-onest-base",
+  display: "swap"
+});
