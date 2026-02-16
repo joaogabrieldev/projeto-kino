@@ -42,7 +42,7 @@ export default function BackdropSlider({ content }: IBackdropSlider) {
   const mediaType = currentContent.media_type;
 
   return (
-    <section className="relative z-0 h-screen w-full overflow-hidden bg-black">
+    <section className="relative z-0 h-screen w-full overflow-hidden bg-black select-none">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentContent.id}
