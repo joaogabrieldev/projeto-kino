@@ -9,11 +9,17 @@ import ModeButton from "@/pieces/ModeButton/ModeButton";
 
 import Nav from "../../components/Nav/Nav";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       const screenHeight = window.innerHeight;
 
@@ -33,14 +39,16 @@ const Header = () => {
     };
   }, []);
 
-  if (isScrolled) {
-    console.log("Scrolou");
-  }
+  const headerBackground = isHomePage
+    ? isScrolled
+      ? "bg-[#8b0000] shadow-[#8b0000]/35"
+      : "bg-transparent shadow-transparent"
+    : "bg-[#8b0000] shadow-[#8b0000]/35";
 
   return (
     <header
       className={`fixed top-0 left-0 z-50 flex w-full flex-row items-center justify-center transition-all duration-500 ${
-        isScrolled ? "bg-[#8b0000] shadow-[#8b0000]/35" : "bg-transparent shadow-transparent"
+        headerBackground
       } py-4 shadow-2xl select-none`}
     >
       <div className="flex w-[20%] pl-6">
