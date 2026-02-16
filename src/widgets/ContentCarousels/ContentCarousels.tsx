@@ -19,6 +19,8 @@ import {
 } from "@/hooks/useTVShows";
 import { mixContentTypeArray } from "@/utils/utilitaries";
 
+import { motion } from "motion/react";
+
 const ContentRows = () => {
   //? 1º Row
   const { data: popularMoviesData } = usePopularMovies();
@@ -63,7 +65,7 @@ const ContentRows = () => {
   const sciFiContent = mixContentTypeArray(sciFiGenreMoviesData, sciFiGenreTVShowsData, 100);
 
   return (
-    <section className="-mt-30 flex flex-col gap-2">
+    <motion.section className="-mt-30 flex flex-col gap-2">
       <ContentRow title="🔥 O Que Todo Mundo Está Assistindo" data={popularContent} />
 
       <ContentRow title="🍿 Obras-Primas do Cinema" data={topRatedMoviesData || []} />
@@ -73,7 +75,7 @@ const ContentRows = () => {
       <ContentRow title="👀 Fique de Olho: Vem Aí" data={upcomingMoviesData || []} />
 
       <ContentRow title="📺 Novidades na Tela" data={nowPlayingContent} />
-    </section>
+    </motion.section>
   );
 };
 
