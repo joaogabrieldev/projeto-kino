@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-import Content from "./../widgets/Content/Content";
+import Main from "@/widgets/Main/Main";
 
 export default function Home() {
   return (
-    <div>
-      <Content />
-    </div>
+    <>
+      <Main />
+    </>
   );
 }
