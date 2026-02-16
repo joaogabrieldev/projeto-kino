@@ -48,7 +48,6 @@
   --radius-4xl: calc(var(--radius) + 16px);
 
   /** My Variables  */
-  --font-alteHaasGrotesk: var(--font-alteHaas-base), sans-serif;
 }
 
 :root {
