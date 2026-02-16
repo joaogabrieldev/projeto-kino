@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/carousel";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { defaultSelection } from "@/utils/defaults";
+import ContentCard from "./../../pieces/ContentCard/ContentCard";
 
 interface ContentRowProps {
   title: string;
@@ -46,22 +47,13 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
             const itemTitle = "title" in item ? item.title : item.name;
 
             return (
-              <CarouselItem
+              <ContentCard
                 key={item.id}
-                className="basis-1/2 pl-2 md:basis-1/3 md:pl-4 lg:basis-1/4 xl:basis-1/5"
-              >
-                <Link href={""}>
-                  <div className="relative aspect-2/3 cursor-pointer overflow-hidden rounded-sm bg-zinc-900 shadow-md transition-transform duration-300 hover:z-50 hover:scale-105">
-                    <Image
-                      src={`${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.media_type !== "person" ? item.poster_path : null}`}
-                      alt={itemTitle}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-                    />
-                  </div>
-                </Link>
-              </CarouselItem>
+                itemID={item.id}
+                linkHref={item.media_type !== "person" ? `/${item.media_type}/${item.id}` : ""}
+                imageSrc={`${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.media_type !== "person" ? item.poster_path : null}`}
+                alt={itemTitle}
+              />
             );
           })}
         </CarouselContent>

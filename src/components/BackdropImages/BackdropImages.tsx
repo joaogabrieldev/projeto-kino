@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { usePopularMovies } from "@/hooks/useMovies";
 import { usePopularTVShow } from "@/hooks/useTVShows";
@@ -9,6 +9,12 @@ import { mixContentTypeArray } from "@/utils/utilitaries";
 import BackdropSlider from "../BackdropSlider/BackdropSlider";
 
 export default function BackdropImages() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const { data: moviesData, isLoading: isLoadingMovies } = usePopularMovies();
 
   const { data: tvShowData, isLoading: isLoadingTV } = usePopularTVShow();
@@ -27,11 +33,11 @@ export default function BackdropImages() {
 
   const isLoading = isLoadingMovies || isLoadingTV;
 
-  if (isLoading) {
+  if (!isMounted || isLoading) {
     return <div className="h-[85vh] w-full animate-pulse bg-black" />;
   }
 
-  if (content.length === 0) {
+  if (!content || content.length === 0) {
     return <div className="h-[85vh] w-full bg-black" />;
   }
 
