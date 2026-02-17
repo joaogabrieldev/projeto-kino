@@ -21,19 +21,19 @@ export const navLinks: NavLinks[] = [
     subtitles: [
       {
         title: "Populares",
-        slug: "/movie",
+        slug: "/movie/category/popular",
       },
       {
         title: "Em cartaz",
-        slug: "/movie/now-playing",
+        slug: "/movie/category/now_playing",
       },
       {
         title: "Vindo aí",
-        slug: "/movie/upcoming",
+        slug: "/movie/category/upcoming",
       },
       {
         title: "Mais bem avaliados",
-        slug: "/movie/top_rated",
+        slug: "/movie/category/top_rated",
       },
     ],
   },
@@ -46,15 +46,15 @@ export const navLinks: NavLinks[] = [
       },
       {
         title: "Em exibição hoje",
-        slug: "/tv/airing-today",
+        slug: "/tv/category/airing-today",
       },
       {
         title: "Na TV",
-        slug: "/tv/on-the-air",
+        slug: "/tv/category/on-the-air",
       },
       {
         title: "Mais bem avaliados",
-        slug: "/tv/top_rated",
+        slug: "/tv/category/top_rated",
       },
     ],
   },
