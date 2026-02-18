@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
+import { useEffect, useState } from "react";
 
 import logo from "@/assets/images/KINO.png";
 import ModeButton from "@/pieces/ModeButton/ModeButton";
 
 import Nav from "../../components/Nav/Nav";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,7 +37,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isHomePage]);
 
   const headerBackground = isHomePage
     ? isScrolled
