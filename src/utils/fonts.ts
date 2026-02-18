@@ -26,5 +26,10 @@ export const alteHaasGrotesk = localFont({
 export const onest = localFont({
   src: "../assets/fonts/Onest/Onest-VariableFont_wght.ttf",
   variable: "--font-onest-base",
-  display: "swap"
+  display: "swap",
+});
+
+export const hendrigo = localFont({
+  src: "../assets/fonts/Hendrigo/Hendrigo.otf",
+  display: "auto",
 });

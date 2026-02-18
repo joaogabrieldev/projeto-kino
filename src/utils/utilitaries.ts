@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import { MediaItem, MovieItem, TVItem } from "@/assets/types";
 
 export function shuffleArray<T>(array: T[]): T[] {
@@ -14,4 +16,20 @@ export function mixContentTypeArray(
   const shuffled = shuffleArray(allContent);
 
   return shuffled.slice(0, limit);
+}
+
+export function useSocialMedia() {
+  const socialMediaRef = useRef<{ [key: string]: Window | null }>({});
+
+  const handleSocialMediaClick = (socialMediaURL: string, tabName: string) => {
+    const existingWindow = socialMediaRef.current[tabName];
+
+    if (existingWindow && !existingWindow.closed) {
+      existingWindow.focus();
+    } else {
+      socialMediaRef.current[tabName] = window.open(socialMediaURL, tabName);
+    }
+  };
+
+  return handleSocialMediaClick;
 }
