@@ -28,12 +28,22 @@ export const ENDPOINTS = {
     PERSON: "/search/person",
   },
   DISCOVER: {
-    SET_GENRE: (type: "movie" | "tv") => `/discover/${type}`,
+    DEFAULT_PATH: (type: "movie" | "tv") => `/discover/${type}`,
   },
   GENRES: {
     MOVIE: "/genre/movie/list",
     TV: "/genre/tv/list",
     GET_GENRE_LIST: (type: "movie" | "tv") => `genre/${type}/list`,
+  },
+  TRENDING: {
+    MOVIE: {
+      WEEK: "/trending/movie/week",
+      DAY: "/trending/movie/day",
+    },
+    TV: {
+      WEEK: "/trending/tv/week",
+      DAY: "/trending/tv/day",
+    },
   },
   IMAGES: {
     BASE_URL: "https://image.tmdb.org/t/p/",
