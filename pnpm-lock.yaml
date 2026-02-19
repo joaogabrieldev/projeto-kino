@@ -17,6 +17,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.90.20
         version: 5.90.20(react@19.2.3)
+      '@untitledui/icons':
+        specifier: ^0.0.21
+        version: 0.0.21(react@19.2.3)
       axios:
         specifier: ^1.13.5
         version: 1.13.5
@@ -44,6 +47,9 @@ importers:
       react:
         specifier: 19.2.3
         version: 19.2.3
+      react-aria-components:
+        specifier: ^1.15.1
+        version: 1.15.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-dom:
         specifier: 19.2.3
         version: 19.2.3(react@19.2.3)
@@ -2261,6 +2267,11 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
+
+  '@untitledui/icons@0.0.21':
+    resolution: {integrity: sha512-+aVWUw/1se9PIJgwMD3qp5ohynGlVNu2oHSLzMwYpiSFp6bFcxv4kUGy685hQXB/hE4WAqnp7dIEVVMD0tfL7w==}
+    peerDependencies:
+      react: '>= 16'
 
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
@@ -7295,6 +7306,10 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
+
+  '@untitledui/icons@0.0.21(react@19.2.3)':
+    dependencies:
+      react: 19.2.3
 
   accepts@2.0.0:
     dependencies:
