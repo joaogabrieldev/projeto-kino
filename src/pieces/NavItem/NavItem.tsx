@@ -4,6 +4,7 @@ import "./NavItem.css";
 
 import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 type Subtitles = {
@@ -14,9 +15,10 @@ type Subtitles = {
 interface IProps {
   title: string;
   subtitles?: Subtitles[];
+  titleHREF: string;
 }
 
-const NavItem = ({ title, subtitles }: IProps) => {
+const NavItem = ({ title, subtitles, titleHREF }: IProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const { refs, floatingStyles } = useFloating({
@@ -35,14 +37,16 @@ const NavItem = ({ title, subtitles }: IProps) => {
   });
   return (
     <>
-      <li
-        ref={refs.setReference}
-        className="navItem"
-        onMouseEnter={() => setDropdownOpen(true)}
-        onMouseLeave={() => setDropdownOpen(false)}
-      >
-        {title.toUpperCase()}
-      </li>
+      <Link href={titleHREF}>
+        <li
+          ref={refs.setReference}
+          className="navItem"
+          onMouseEnter={() => setDropdownOpen(true)}
+          onMouseLeave={() => setDropdownOpen(false)}
+        >
+          {title.toUpperCase()}
+        </li>
+      </Link>
       <AnimatePresence>
         {dropdownOpen && (
           <motion.div
