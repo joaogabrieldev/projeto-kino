@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import Link from "next/link";
-import React, { useRef } from "react";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 
 import { hendrigo, onest } from "@/utils/fonts";
@@ -21,7 +19,7 @@ const Footer = () => {
       <div
         className={`w-full ${onest.className} text-md flex items-center justify-center text-yellow-500`}
       >
-        <span>&copy; 2025, João Gabriel R. Rocha. Todos os direitos reservados.</span>
+        <span>&copy; 2026, João Gabriel R. Rocha. Todos os direitos reservados.</span>
       </div>
       <div className="flex flex-row gap-2 px-4 pt-2">
         <span>
