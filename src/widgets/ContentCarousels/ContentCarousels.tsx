@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 
 import ContentRow from "@/components/ContentRow/ContentRow";
 import { MOVIE_GENRES, TV_GENRES } from "@/constants/genres";
-import { useMediaByGenre } from "@/hooks/useContent";
+import { useMediaByGenre, useTrending } from "@/hooks/useContent";
 import {
   useNowPlayingMovies,
   usePopularMovies,
@@ -21,6 +21,11 @@ import {
 import { mixContentTypeArray } from "@/utils/utilitaries";
 
 const ContentRows = () => {
+  //? Row
+  const { data: trendingMovies } = useTrending("movie", "week");
+  const { data: trendingShows } = useTrending("tv", "week");
+  const trendingContent = mixContentTypeArray(100, trendingMovies, trendingShows);
+
   //? Row
   const { data: popularMoviesData } = usePopularMovies();
   const { data: popularTVShowData } = usePopularTVShow();
@@ -127,7 +132,9 @@ const ContentRows = () => {
       viewport={{ once: true }}
       className="-mt-30 flex flex-col gap-2"
     >
-      <ContentRow title="🔥 O Que Todo Mundo Está Assistindo" data={popularContent} />
+      <ContentRow title="🔥 O Que Todo Mundo Está Assistindo" data={trendingContent} />
+
+      <ContentRow title="🌟 Os Mais Queridos" data={popularContent} />
 
       <ContentRow title="🎬 Obras-Primas do Cinema" data={topRatedMoviesData || []} />
 
