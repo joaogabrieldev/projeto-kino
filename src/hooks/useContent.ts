@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { select } from "motion/react-client";
 
 import { DiscoveryResponse, Genre, GenresResponse, MediaItem } from "@/assets/types";
@@ -85,6 +85,36 @@ export const useTrending = (type: "movie" | "tv" = "movie", timeWindow: "day" | 
         : selectAsShow(data as unknown as TVShowResponse);
     },
 
+    staleTime: 1000 * 60 * 60,
+  });
+};
+
+export const useDiscoverMedia = (type: "movie" | "tv", page: number) => {
+  return useQuery({
+    queryKey: ["discover-media-infinite", type, page],
+
+    queryFn: async () => {
+      const { data } = await api.get(ENDPOINTS.DISCOVER.DEFAULT_PATH(type), {
+        params: {
+          language: "pt-BR",
+          sort_by: "popularity.desc",
+          page: page,
+        },
+      });
+      return data;
+    },
+
+    select: (data) => {
+      return {
+        results:
+          type === "movie"
+            ? selectAsMovie(data as MovieResponse)
+            : selectAsShow(data as TVShowResponse),
+
+        totalPages: data.total_pages > 500 ? 500 : data.total_pages,
+      };
+    },
+    placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 60,
   });
 };
