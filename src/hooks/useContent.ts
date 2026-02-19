@@ -26,13 +26,19 @@ export const useGenresList = (type: "movie" | "tv") => {
   });
 };
 
-export const useMediaByGenre = (type: "movie" | "tv", genreID: number[] | number) => {
-  const genreParams = Array.isArray(genreID) ? genreID.join(",") : genreID.toString();
+export const useMediaByGenre = (
+  type: "movie" | "tv",
+  genreID: number[] | number,
+  operator: "AND" | "OR" = "OR",
+) => {
+  const joinChar = operator === "AND" ? "|" : ",";
+
+  const genreParams = Array.isArray(genreID) ? genreID.join(joinChar) : genreID.toString();
 
   return useQuery({
     queryKey: ["media-by-genre", type, genreID],
     queryFn: async () => {
-      const { data } = await api.get<DiscoveryResponse>(ENDPOINTS.DISCOVER.SET_GENRE(type), {
+      const { data } = await api.get<DiscoveryResponse>(ENDPOINTS.DISCOVER.DEFAULT_PATH(type), {
         params: {
           with_genres: genreParams,
           language: "pt-BR",
@@ -50,6 +56,35 @@ export const useMediaByGenre = (type: "movie" | "tv", genreID: number[] | number
     },
 
     enabled: Array.isArray(genreID) ? genreID.length > 0 : !!genreID,
+    staleTime: 1000 * 60 * 60,
+  });
+};
+
+export const useTrending = (type: "movie" | "tv" = "movie", timeWindow: "day" | "week" = "day") => {
+  return useQuery({
+    queryKey: ["trending", type, timeWindow],
+
+    queryFn: async () => {
+      const endpoint =
+        ENDPOINTS.TRENDING[type.toUpperCase() as "MOVIE" | "TV"][
+          timeWindow.toUpperCase() as "DAY" | "WEEK"
+        ];
+
+      const { data } = await api.get(endpoint, {
+        params: {
+          language: "pt-BR",
+        },
+      });
+
+      return data;
+    },
+
+    select: (data): MediaItem[] => {
+      return type === "movie"
+        ? selectAsMovie(data as unknown as MovieResponse)
+        : selectAsShow(data as unknown as TVShowResponse);
+    },
+
     staleTime: 1000 * 60 * 60,
   });
 };
