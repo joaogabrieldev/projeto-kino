@@ -1,3 +1,5 @@
+import { ENDPOINTS } from "@/constants/endpoints";
+
 export type SubTitles = {
   title: string;
   slug: string;
@@ -5,7 +7,7 @@ export type SubTitles = {
 
 export type NavLinks = {
   title: string;
-  href?: string;
+  href?: string | null;
   subtitles?: SubTitles[];
 };
 
@@ -18,6 +20,7 @@ export const API_ROUTES = {
 export const navLinks: NavLinks[] = [
   {
     title: "Filmes",
+    href: ENDPOINTS.DISCOVER.DEFAULT_PATH("movie"),
     subtitles: [
       {
         title: "Populares",
@@ -39,10 +42,11 @@ export const navLinks: NavLinks[] = [
   },
   {
     title: "Séries",
+    href: ENDPOINTS.DISCOVER.DEFAULT_PATH("tv"),
     subtitles: [
       {
         title: "Populares",
-        slug: "/tv",
+        slug: "/tv/category/popular",
       },
       {
         title: "Em exibição hoje",
@@ -60,6 +64,7 @@ export const navLinks: NavLinks[] = [
   },
   {
     title: "Artistas",
+    href: "/person",
     subtitles: [
       {
         title: "Artistas",
