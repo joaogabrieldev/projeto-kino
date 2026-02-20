@@ -72,3 +72,45 @@ export const getGenreName = (id: number): string => {
 
   return allGenres[id] || "Desconhecido";
 };
+
+export const GENRES_PT_BR = {
+  MOVIES: [
+    "Ação",
+    "Aventura",
+    "Animação",
+    "Comédia",
+    "Crime",
+    "Documentário",
+    "Drama",
+    "Família",
+    "Fantasia",
+    "História",
+    "Terror",
+    "Música",
+    "Mistério",
+    "Romance",
+    "Ficção científica",
+    "Cinema TV",
+    "Thriller",
+    "Guerra",
+    "Faroeste",
+  ],
+  TV_SHOWS: [
+    "Ação e Aventura",
+    "Animação",
+    "Comédia",
+    "Crime",
+    "Documentário",
+    "Drama",
+    "Família",
+    "Kids (Infantil)",
+    "Mistério",
+    "Notícias",
+    "Reality",
+    "Ficção científica e Fantasia",
+    "Novela (Soap)",
+    "Talk",
+    "Guerra e Política",
+    "Faroeste",
+  ],
+};
