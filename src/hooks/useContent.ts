@@ -29,9 +29,9 @@ export const useGenresList = (type: "movie" | "tv") => {
 export const useMediaByGenre = (
   type: "movie" | "tv",
   genreID: number[] | number,
-  operator: "AND" | "OR" = "OR",
+  genreOperator: "AND" | "OR" = "OR",
 ) => {
-  const joinChar = operator === "AND" ? "|" : ",";
+  const joinChar = genreOperator === "AND" ? "|" : ",";
 
   const genreParams = Array.isArray(genreID) ? genreID.join(joinChar) : genreID.toString();
 
@@ -89,9 +89,27 @@ export const useTrending = (type: "movie" | "tv" = "movie", timeWindow: "day" | 
   });
 };
 
-export const useDiscoverMedia = (type: "movie" | "tv", page: number) => {
+interface DiscoverFilters {
+  page?: number;
+  genres?: number[] | number;
+  genreOperator?: "AND" | "OR";
+  ageRating?: string;
+}
+
+export const useDiscoverMedia = (type: "movie" | "tv", filters: DiscoverFilters = {}) => {
+  const { page = 1, genres, genreOperator = "OR", ageRating } = filters;
+
+  let with_genres: string | undefined = undefined;
+  if (genres) {
+    const genresArray = Array.isArray(genres) ? genres : [genres];
+    if (genresArray.length > 0) {
+      const joinChar = genreOperator === "AND" ? "|" : ",";
+      with_genres = genresArray.join(joinChar);
+    }
+  }
+
   return useQuery({
-    queryKey: ["discover-media-infinite", type, page],
+    queryKey: ["discover-media-infinite", type, page, with_genres, ageRating],
 
     queryFn: async () => {
       const { data } = await api.get(ENDPOINTS.DISCOVER.DEFAULT_PATH(type), {
@@ -99,6 +117,9 @@ export const useDiscoverMedia = (type: "movie" | "tv", page: number) => {
           language: "pt-BR",
           sort_by: "popularity.desc",
           page: page,
+          with_genres: with_genres,
+          certification_country: ageRating ? "BR" : undefined,
+          "certification.lte": ageRating || undefined,
         },
       });
       return data;
