@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 import { onest } from "@/utils/fonts";
 
-interface IGenreBadge {
+interface ISelectBadge {
   genreTitle: string;
   isSelected: boolean;
   onClick: () => void;
 }
 
-const GenreBadge = ({ genreTitle, isSelected, onClick }: IGenreBadge) => {
+const SelectBadge = ({ genreTitle, isSelected, onClick }: ISelectBadge) => {
   const selectedStyle = isSelected
     ? "bg-[#8b0000] text-[#d4af37] hover:text-[#d4af37] font-semibold border-[#8b0000]"
     : "border border-white text-white";
@@ -23,4 +23,4 @@ const GenreBadge = ({ genreTitle, isSelected, onClick }: IGenreBadge) => {
   );
 };
 
-export default GenreBadge;
+export default SelectBadge;
