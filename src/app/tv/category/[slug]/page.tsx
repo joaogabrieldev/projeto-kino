@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { use } from "react";
 
-const page = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+import DiscoverHomePage from "@/templates/DiscoverHomePage/DiscoverHomePage";
+
+interface ISlugTVShow {
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-export default page
+const SlugTVShowPage = ({ params }: ISlugTVShow) => {
+  const { slug } = use(params);
+
+  return <DiscoverHomePage type="tv" categorySlug={slug} />;
+};
+
+export default SlugTVShowPage;
