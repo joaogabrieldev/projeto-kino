@@ -89,15 +89,26 @@ export const useTrending = (type: "movie" | "tv" = "movie", timeWindow: "day" | 
   });
 };
 
+export type SortOption = "popularity.desc" | "vote_average.desc" | "primary_release_date.desc";
+
 interface DiscoverFilters {
   page?: number;
   genres?: number[] | number;
   genreOperator?: "AND" | "OR";
   ageRating?: string;
+  sortBy?: SortOption;
+  voteCountGte?: number;
 }
 
 export const useDiscoverMedia = (type: "movie" | "tv", filters: DiscoverFilters = {}) => {
-  const { page = 1, genres, genreOperator = "OR", ageRating } = filters;
+  const {
+    page = 1,
+    genres,
+    genreOperator = "OR",
+    ageRating,
+    sortBy = "popularity.desc",
+    voteCountGte,
+  } = filters;
 
   let with_genres: string | undefined = undefined;
   if (genres) {
@@ -109,17 +120,20 @@ export const useDiscoverMedia = (type: "movie" | "tv", filters: DiscoverFilters 
   }
 
   return useQuery({
-    queryKey: ["discover-media-infinite", type, page, with_genres, ageRating],
+    queryKey: ["discover-media-infinite", type, page, with_genres, ageRating, sortBy, voteCountGte],
 
     queryFn: async () => {
       const { data } = await api.get(ENDPOINTS.DISCOVER.DEFAULT_PATH(type), {
         params: {
           language: "pt-BR",
-          sort_by: "popularity.desc",
           page: page,
           with_genres: with_genres,
+
           certification_country: ageRating ? "BR" : undefined,
-          "certification.lte": ageRating || undefined,
+          certification: ageRating || undefined,
+
+          sort_by: sortBy,
+          "vote_count.gte": voteCountGte || undefined,
         },
       });
       return data;
