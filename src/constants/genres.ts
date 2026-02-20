@@ -39,40 +39,6 @@ export const TV_GENRES = {
   WESTERN: 37,
 } as const;
 
-export const getGenreName = (id: number): string => {
-  const allGenres: Record<number, string> = {
-    28: "Ação",
-    12: "Aventura",
-    16: "Animação",
-    35: "Comédia",
-    80: "Crime",
-    99: "Documentário",
-    18: "Drama",
-    10751: "Família",
-    14: "Fantasia",
-    36: "História",
-    27: "Terror",
-    10402: "Música",
-    9648: "Mistério",
-    10749: "Romance",
-    878: "Ficção Científica",
-    10770: "Cinema TV",
-    53: "Thriller",
-    10752: "Guerra",
-    37: "Faroeste",
-    10759: "Ação & Aventura",
-    10762: "Kids",
-    10763: "News",
-    10764: "Reality",
-    10765: "Sci-Fi & Fantasy",
-    10766: "Novela",
-    10767: "Talk Show",
-    10768: "Guerra & Política",
-  };
-
-  return allGenres[id] || "Desconhecido";
-};
-
 export const GENRES_PT_BR = {
   MOVIES: [
     "Ação",
@@ -113,4 +79,43 @@ export const GENRES_PT_BR = {
     "Guerra e Política",
     "Faroeste",
   ],
+};
+
+const ALL_GENRES_MAP: Record<number, string> = {
+  28: "Ação",
+  12: "Aventura",
+  16: "Animação",
+  35: "Comédia",
+  80: "Crime",
+  99: "Documentário",
+  18: "Drama",
+  10751: "Família",
+  14: "Fantasia",
+  36: "História",
+  27: "Terror",
+  10402: "Música",
+  9648: "Mistério",
+  10749: "Romance",
+  878: "Ficção Científica",
+  10770: "Cinema TV",
+  53: "Thriller",
+  10752: "Guerra",
+  37: "Faroeste",
+  10759: "Ação & Aventura",
+  10762: "Kids",
+  10763: "News",
+  10764: "Reality",
+  10765: "Sci-Fi & Fantasy",
+  10766: "Novela",
+  10767: "Talk Show",
+  10768: "Guerra & Política",
+};
+
+export const getGenreName = (id: number): string => {
+  return ALL_GENRES_MAP[id] || "Desconhecido";
+};
+
+export const getGenreId = (name: string): number | undefined => {
+  const entry = Object.entries(ALL_GENRES_MAP).find(([_, genreName]) => genreName === name);
+  return entry ? Number(entry[0]) : undefined;
 };
