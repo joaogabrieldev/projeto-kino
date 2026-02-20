@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 import * as Paginations from "@/components/application/pagination/pagination";
-import GenreBadge from "@/pieces/GenreBadge/GenreBadge";
+import SelectBadge from "@/pieces/SelectBadge/SelectBadge";
 import { onest } from "@/utils/fonts";
 
 interface IFilterCardProps {
@@ -16,10 +16,26 @@ interface IFilterCardProps {
 
   //? Genre Select
   genreList: string[];
-
   selectedGenres: string[];
   onGenreSelect: React.Dispatch<React.SetStateAction<string[]>>;
+
+  //? Age Rating
+  selectedAge: string | undefined;
+  onAgeSelect: React.Dispatch<React.SetStateAction<string | undefined>>;
+
+  // //? Endpoint Select
+  // checked: boolean;
+  // setChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const ageRatings: string[] = ["L", "10", "12", "14", "16", "18"];
+
+const movieEndpointsTitles: string[] = [
+  "Mais Populares",
+  "Melhores Avaliados",
+  "Em Cartaz",
+  "Próximos Lançamentos",
+];
 
 const FilterCard = ({
   totalPages,
@@ -29,20 +45,26 @@ const FilterCard = ({
   genreList,
   selectedGenres,
   onGenreSelect,
+  selectedAge,
+  onAgeSelect,
 }: IFilterCardProps) => {
   return (
-    <div className="-mt-3 h-fit w-80 border-2 border-white text-white select-none">
-      <div className="pb-4">
+    <div className="-mt-4 h-fit w-80 border-2 border-white text-white select-none">
+      {/* Título da Página */}
+      <div className="">
         <span className={`pl-6 text-2xl font-bold ${onest.className}`}>{pageTitle}</span>
       </div>
-      <div className="flex flex-col justify-center border-2 py-6">
+      {/* Seleção do Endpoint */}
+      <div></div>
+      {/* Seleção de Gêneros */}
+      <div className="flex flex-col justify-center border-2 py-4">
         <div>
-          <h2 className="border-2 pl-4">Gêneros</h2>
+          <h2 className={`border-2 pl-4 ${onest.className} text-md font-semibold`}>Gêneros</h2>
         </div>
         <div className="mt-2 flex flex-wrap gap-x-2 gap-y-2.5 px-6">
           {genreList.map((item, index) => {
             return (
-              <GenreBadge
+              <SelectBadge
                 key={index}
                 genreTitle={item}
                 isSelected={selectedGenres.includes(item)}
@@ -62,6 +84,26 @@ const FilterCard = ({
           })}
         </div>
       </div>
+      {/* Classificação por Idade */}
+      <div className="border-2 border-white py-2">
+        <h2 className={`border-2 pl-4 ${onest.className} text-md font-semibold`}>Classificação</h2>
+        <div className="my-2 flex flex-wrap gap-x-2 gap-y-2.5 border-2 border-red-600 px-6">
+          {ageRatings.map((item, index) => {
+            return (
+              <SelectBadge
+                key={index}
+                genreTitle={item}
+                isSelected={selectedAge === item}
+                onClick={() => {
+                  onAgeSelect(selectedAge === item ? undefined : item);
+                  onPageChange(1);
+                }}
+              />
+            );
+          })}{" "}
+        </div>
+      </div>
+      {/* Paginação */}
       <div className="border-2 border-white">
         <Paginations.PaginationCardDefault
           page={currentPage}
