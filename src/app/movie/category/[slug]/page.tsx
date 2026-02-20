@@ -1,15 +1,17 @@
 import React, { use } from "react";
 
-interface IMoviePathProps {
+import DiscoverHomePage from "@/templates/DiscoverHomePage/DiscoverHomePage";
+
+interface ISlugMoviePage {
   params: Promise<{
     slug: string;
   }>;
 }
 
-const SlugMoviePage = ({ params }: IMoviePathProps) => {
+const SlugMoviePage = ({ params }: ISlugMoviePage) => {
   const { slug } = use(params);
 
-  return <div className="mt-20 text-white">Você está em {slug}</div>;
+  return <DiscoverHomePage type="movie" categorySlug={slug} />;
 };
 
 export default SlugMoviePage;
