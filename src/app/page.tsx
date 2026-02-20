@@ -1,4 +1,4 @@
-import Main from "@/widgets/Main/Main";
+import Main from "@/layout/Main/Main";
 
 export default function Home() {
   return (
