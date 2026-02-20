@@ -1,6 +1,6 @@
 import React, { use } from "react";
 
-import DiscoverHomePage from "@/templates/DiscoverHomePage/DiscoverHomePage";
+import DiscoverHomePage from "@/widgets/DiscoverHomePage/DiscoverHomePage";
 
 interface ISlugTVShow {
   params: Promise<{
