@@ -129,7 +129,7 @@ const ContentRows = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, delay: 2.5 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: "all" }}
       className="-mt-30 flex flex-col gap-2"
     >
       <ContentRow title="🔥 O Que Todo Mundo Está Assistindo" data={trendingContent} />
