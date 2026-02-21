@@ -7,12 +7,15 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import logo from "@/assets/images/KINO.png";
+import HeaderSearchBar from "@/components/HeaderSearchBar/HeaderSearchBar";
 import ModeButton from "@/pieces/ModeButton/ModeButton";
+import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
 
 import Nav from "../../components/Nav/Nav";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const isScrolled = useHeaderScroll((state) => state.isScrolled);
+  const setIsScrolled = useHeaderScroll((state) => state.setIsScrolled);
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -45,23 +48,39 @@ const Header = () => {
       : "bg-transparent shadow-transparent"
     : "bg-[#8b0000] shadow-[#8b0000]/35";
 
+  const headerLeftLayout = isHomePage ? (
+    <HeaderSearchBar isScrolled={isScrolled} />
+  ) : (
+    <ModeButton height="h-12" width="w-12" iconSize={24} />
+  );
+  const headerRightLayout = isHomePage ? (
+    <div className="flex flex-row items-center gap-8">
+      <span className="">
+        <Nav />
+      </span>
+      <span className="">
+        <ModeButton height="h-10" width="w-10" iconSize={22} />
+      </span>
+    </div>
+  ) : (
+    <>
+      <Nav />
+    </>
+  );
+
   return (
     <header
       className={`fixed top-0 left-0 z-50 flex w-full flex-row items-center justify-center transition-all duration-500 ${
         headerBackground
       } py-4 shadow-2xl select-none`}
     >
-      <div className="flex w-[20%] pl-6">
-        <ModeButton />
-      </div>
+      <div className="flex w-[20%] pl-6">{headerLeftLayout}</div>
       <div className="flex w-[40%] items-center justify-center">
         <Link href="/">
           <Image src={logo.src} alt="Kino Logo" width={120} height={120} />
         </Link>
       </div>
-      <div className="w-[20%]">
-        <Nav />
-      </div>
+      <div className="w-[20%]">{headerRightLayout}</div>
     </header>
   );
 };
