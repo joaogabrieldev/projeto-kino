@@ -5,7 +5,10 @@ import "./NavItem.css";
 import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+
+import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
 
 type Subtitles = {
   title: string;
@@ -20,6 +23,16 @@ interface IProps {
 
 const NavItem = ({ title, subtitles, titleHREF }: IProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const isScrolled = useHeaderScroll((state) => state.isScrolled);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const isHeaderTransparent = isHomePage && !isScrolled;
+
+  const navItemStyle = isHeaderTransparent
+    ? "text-white hover:text-gray-200"
+    : "text-[#c5a059] hover:text-[#d4af37]";
 
   const { refs, floatingStyles } = useFloating({
     open: dropdownOpen,
@@ -40,7 +53,7 @@ const NavItem = ({ title, subtitles, titleHREF }: IProps) => {
       <Link href={titleHREF}>
         <li
           ref={refs.setReference}
-          className="navItem"
+          className={`navItem ${navItemStyle}`}
           onMouseEnter={() => setDropdownOpen(true)}
           onMouseLeave={() => setDropdownOpen(false)}
         >

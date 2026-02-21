@@ -1,18 +1,38 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
-const ModeButton = () => {
+import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
+
+interface IModeButton {
+  width: string;
+  height: string;
+  iconSize?: number;
+}
+
+const ModeButton = ({ width, height, iconSize }: IModeButton) => {
   const [isLight, setIsLight] = useState(false);
+
+  const isScrolled = useHeaderScroll((state) => state.isScrolled);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const isHeaderTransparent = isHomePage && !isScrolled;
+  const iconStyle = isHeaderTransparent ? "stroke-white" : "stroke-yellow-500";
 
   return (
     <div
-      className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-yellow-500"
+      className={`flex ${width} ${height} cursor-pointer items-center justify-center rounded-full border-2 ${isHeaderTransparent ? "border-white" : "border-yellow-500"} transition-colors`}
       onClick={() => setIsLight((prev) => !prev)}
     >
       <div>
-        {isLight ? <Moon className="stroke-yellow-500" /> : <Sun className="stroke-yellow-500" />}
+        {isLight ? (
+          <Moon className={`${iconStyle} transition-colors`} width={iconSize} height={iconSize} />
+        ) : (
+          <Sun className={`${iconStyle} transition-colors`} width={iconSize} height={iconSize} />
+        )}
       </div>
     </div>
   );
