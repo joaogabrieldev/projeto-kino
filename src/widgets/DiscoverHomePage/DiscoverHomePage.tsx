@@ -38,6 +38,8 @@ const DiscoverHomePage = ({ type, categorySlug }: IDiscoverHomePage) => {
 
   const genreList = type === "movie" ? GENRES_PT_BR.MOVIES : GENRES_PT_BR.TV_SHOWS;
 
+  const ageRatings: string[] = ["L", "10", "12", "14", "16", "18"];
+
   const apiParams = useMemo(() => {
     switch (categorySlug) {
       case "top_rated":
@@ -74,6 +76,7 @@ const DiscoverHomePage = ({ type, categorySlug }: IDiscoverHomePage) => {
         onGenreSelect={setSelectedGenres}
         selectedAge={selectedAge}
         onAgeSelect={setSelectedAge}
+        ageRatings={ageRatings}
       />
       <GridContents results={allMediaData?.results ?? []} />
     </div>

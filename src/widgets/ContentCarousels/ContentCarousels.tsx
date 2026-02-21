@@ -132,7 +132,7 @@ const ContentRows = () => {
       viewport={{ once: true, amount: "all" }}
       className="-mt-30 flex flex-col gap-2"
     >
-      <ContentRow title="🔥 O Que Todo Mundo Está Assistindo" data={trendingContent} />
+      <ContentRow title="🔥 O Que Todo Mundo Está Procurando" data={trendingContent} />
 
       <ContentRow title="🌟 Os Mais Queridos" data={popularContent} />
 

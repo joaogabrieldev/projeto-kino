@@ -11,7 +11,7 @@ interface IGridContentsProps {
 
 const GridContents = ({ results }: IGridContentsProps) => {
   return (
-    <div className="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid gap-x-10 gap-y-8 select-none md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {results.map((item) => {
         if (item.media_type === "person" || !item.poster_path) return null;
 
