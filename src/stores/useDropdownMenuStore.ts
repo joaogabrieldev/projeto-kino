@@ -8,6 +8,6 @@ interface IDropdownState {
 
 export const useDropdown = create<IDropdownState>((set) => ({
   dropdownOpen: false,
-  setDropdownOpen: (isOpen) => set((state) => ({ dropdownOpen: isOpen })),
+  setDropdownOpen: (isOpen) => set({ dropdownOpen: isOpen }),
   toggleMenu: () => set((state) => ({ dropdownOpen: !state.dropdownOpen })),
 }));
