@@ -153,3 +153,32 @@ export const useDiscoverMedia = (type: "movie" | "tv", filters: DiscoverFilters 
     staleTime: 1000 * 60 * 60,
   });
 };
+
+export const useSearchMedia = (query: string, page: number = 1) => {
+  return useQuery({
+    queryKey: ["search-media", query, page],
+
+    queryFn: async () => {
+      const { data } = await api.get(ENDPOINTS.SEARCH.MULTI, {
+        params: {
+          query: query,
+          page: page,
+          language: "pt-BR",
+        },
+      });
+
+      const filteredResults = data.results.filter(
+        (item: MediaItem) => item.media_type !== "person",
+      );
+
+      return {
+        results: filteredResults,
+        totalPages: data.total_pages,
+      };
+    },
+
+    enabled: !!query,
+
+    placeholderData: (previousData) => previousData,
+  });
+};
