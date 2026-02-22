@@ -182,3 +182,52 @@ export const useSearchMedia = (query: string, page: number = 1) => {
     placeholderData: (previousData) => previousData,
   });
 };
+
+export const useSearchPeople = (query: string, page: number = 1) => {
+  return useQuery({
+    queryKey: ["search-people", query, page],
+    queryFn: async () => {
+      const { data } = await api.get(ENDPOINTS.SEARCH.PERSON, {
+        params: {
+          query: query,
+          page: page,
+          language: "pt-BR",
+        },
+      });
+
+      return data;
+    },
+
+    select: (data) => ({
+      results: data.results,
+      totalPages: data.total_pages,
+    }),
+
+    enabled: !!query,
+
+    placeholderData: (previousData) => previousData,
+  });
+};
+
+export const usePopularPeople = (page: number = 1) => {
+  return useQuery({
+    queryKey: ["popular-persons", page],
+
+    queryFn: async () => {
+      const { data } = await api.get(ENDPOINTS.PERSON.POPULAR, {
+        params: {
+          page: page,
+          language: "pt-BR",
+        },
+      });
+      return data;
+    },
+
+    select: (data) => ({
+      results: data.results,
+      totalPages: data.total_pages,
+    }),
+
+    placeholderData: (previousData) => previousData,
+  });
+};
