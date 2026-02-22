@@ -29,6 +29,8 @@ interface IFilterCardProps {
   // //? Endpoint Select
   // checked: boolean;
   // setChecked: React.Dispatch<React.SetStateAction<boolean>>;
+
+  isPersonSearch?: boolean;
 }
 
 const movieEndpointsTitles: string[] = [
@@ -49,6 +51,7 @@ const FilterCard = ({
   selectedAge,
   onAgeSelect,
   ageRatings,
+  isPersonSearch,
 }: IFilterCardProps) => {
   const hasGenres = genreList.length > 0;
 
@@ -63,7 +66,7 @@ const FilterCard = ({
 
       {/* Filtro por Input */}
       <div className="mt-4">
-        <FilterSearchBar />
+        <FilterSearchBar isPersonSearch={isPersonSearch} />
       </div>
 
       {/* Seleção de Gêneros */}
