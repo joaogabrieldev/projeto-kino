@@ -50,13 +50,20 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
 
             const mediaType = "title" in item ? "movie" : "tv";
 
+            const imageSrc = `${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.media_type !== "person" ? item.poster_path : null}`;
+
+            const linkHREF = item.media_type !== "person" ? `/${item.media_type}/${item.id}` : "";
+
             return (
               <ContentCard
                 key={`${item.id}-${mediaType}-${index}`}
+                width={500}
+                height={750}
                 itemID={item.id}
-                linkHref={item.media_type !== "person" ? `/${item.media_type}/${item.id}` : ""}
-                imageSrc={`${ENDPOINTS.IMAGES.BASE_URL}${ENDPOINTS.IMAGES.SIZES.POSTER}${item.media_type !== "person" ? item.poster_path : null}`}
+                linkHref={linkHREF}
+                imageSrc={imageSrc}
                 alt={itemTitle}
+                isCarousel={true}
               />
             );
           })}
