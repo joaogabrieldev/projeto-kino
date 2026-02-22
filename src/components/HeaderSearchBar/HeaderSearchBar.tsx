@@ -26,6 +26,8 @@ const HeaderSearchBar = ({ isScrolled }: { isScrolled: boolean }) => {
     ? "focus-within:border-yellow-500"
     : "focus-within:border-gray-200";
 
+  const buttonColor = isScrolled ? "text-yellow-500" : "text-white";
+
   return (
     <form
       onSubmit={handleSearch}
@@ -38,7 +40,7 @@ const HeaderSearchBar = ({ isScrolled }: { isScrolled: boolean }) => {
         onChange={(e) => setQuery(e.target.value)}
         className={`w-full bg-transparent text-white placeholder-gray-400 outline-none ${onest.className}`}
       />
-      <button type="submit" className="ml-2 text-gray-400 transition-colors hover:text-white">
+      <button type="submit" className={`ml-2 transition-colors ${buttonColor}`}>
         <FiSearch size={20} />
       </button>
     </form>
