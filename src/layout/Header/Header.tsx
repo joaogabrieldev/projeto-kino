@@ -40,7 +40,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isHomePage]);
+  }, [isHomePage, setIsScrolled]);
 
   const headerBackground = isHomePage
     ? isScrolled
@@ -70,7 +70,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 flex w-full flex-row items-center justify-center transition-all duration-500 ${
+      className={`fixed top-0 left-0 z-100 flex w-full flex-row items-center justify-center transition-all duration-500 ${
         headerBackground
       } py-4 shadow-2xl select-none`}
     >
