@@ -4,6 +4,7 @@ import React from "react";
 
 import { MediaItem } from "@/assets/types";
 import { ENDPOINTS } from "@/constants/endpoints";
+import ContentCard from "@/pieces/ContentCard/ContentCard";
 
 interface IGridContentsProps {
   results: MediaItem[];
@@ -22,17 +23,16 @@ const GridContents = ({ results }: IGridContentsProps) => {
         const imageURL = `/${item.media_type}/${item.id}`;
 
         return (
-          <div key={item.id} className="flex flex-col justify-center">
-            <Link href={imageURL}>
-              <Image
-                src={imageSrc}
-                alt={contentAlt || "Título"}
-                width={250}
-                height={750}
-                className="rounded-lg object-cover"
-              />
-            </Link>
-          </div>
+          <ContentCard
+            key={item.id}
+            itemID={item.id}
+            linkHref={imageURL}
+            imageSrc={imageSrc}
+            alt={contentAlt}
+            width={250}
+            height={750}
+            isCarousel={false}
+          />
         );
       })}
     </div>
