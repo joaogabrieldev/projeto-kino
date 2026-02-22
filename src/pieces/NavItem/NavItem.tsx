@@ -30,6 +30,8 @@ const NavItem = ({ title, subtitles, titleHREF }: IProps) => {
 
   const isHeaderTransparent = isHomePage && !isScrolled;
 
+  const hasSubtitles = subtitles && subtitles.length > 0;
+
   const navItemStyle = isHeaderTransparent
     ? "text-white hover:text-gray-200"
     : "text-[#c5a059] hover:text-[#d4af37]";
@@ -54,14 +56,16 @@ const NavItem = ({ title, subtitles, titleHREF }: IProps) => {
         <li
           ref={refs.setReference}
           className={`navItem ${navItemStyle}`}
-          onMouseEnter={() => setDropdownOpen(true)}
+          onMouseEnter={() => {
+            if (hasSubtitles) setDropdownOpen(true);
+          }}
           onMouseLeave={() => setDropdownOpen(false)}
         >
           {title.toUpperCase()}
         </li>
       </Link>
       <AnimatePresence>
-        {dropdownOpen && (
+        {dropdownOpen && hasSubtitles && (
           <motion.div
             ref={refs.setFloating}
             style={floatingStyles}
