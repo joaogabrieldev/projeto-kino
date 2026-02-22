@@ -60,14 +60,6 @@ const ContentRows = () => {
   //? Row
   const { data: airingTodayTVShowsData } = useAiringTodayTVShows();
 
-  const airingTodayContent = useMemo(() => {
-    const content = airingTodayTVShowsData?.filter((show) => {
-      return (show.popularity ?? 0) > 60;
-    });
-
-    return content;
-  }, [airingTodayTVShowsData]);
-
   //? Row - Comédia
   const { data: comedyGenreMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.COMEDY);
   const { data: comedyGenreTVShowsData } = useMediaByGenre("tv", TV_GENRES.COMEDY);
@@ -118,7 +110,7 @@ const ContentRows = () => {
 
   //? Row - Thriller
   const { data: thrillerMoviesData } = useMediaByGenre("movie", MOVIE_GENRES.THRILLER);
-  const { data: mysteryTVShowsData } = useMediaByGenre("movie", TV_GENRES.MYSTERY);
+  const { data: mysteryTVShowsData } = useMediaByGenre("tv", TV_GENRES.MYSTERY);
 
   const thrillerContent = useMemo(() => {
     return mixContentTypeArray(60, thrillerMoviesData, mysteryTVShowsData);
@@ -144,7 +136,7 @@ const ContentRows = () => {
 
       <ContentRow title="⚡ Em Alta na Semana" data={nowPlayingContent} />
 
-      <ContentRow title="🚨 Alerta de Novo Episódio" data={airingTodayContent || []} />
+      <ContentRow title="🚨 Alerta de Novo Episódio" data={airingTodayTVShowsData || []} />
 
       <ContentRow title="😂 Para Morrer de Rir" data={comedyContent || []} />
 
