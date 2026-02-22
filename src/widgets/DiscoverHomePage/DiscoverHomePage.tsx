@@ -77,6 +77,7 @@ const DiscoverHomePage = ({ type, categorySlug }: IDiscoverHomePage) => {
         selectedAge={selectedAge}
         onAgeSelect={setSelectedAge}
         ageRatings={ageRatings}
+        isPersonSearch={false}
       />
       <GridContents results={allMediaData?.results ?? []} />
     </div>
