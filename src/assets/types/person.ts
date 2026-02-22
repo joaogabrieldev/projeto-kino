@@ -1,19 +1,19 @@
-import type { Movie } from "./movie";
-import type { TVShow } from "./tv";
+import type { IMovie } from "./movie";
+import type { ITVShow } from "./tv";
 
-export interface Role {
+export interface IRole {
   credit_id: string;
   character: string;
   episode_count: number;
 }
 
-export interface Job {
+export interface IJob {
   credit_id: string;
   job: string;
   episode_count: number;
 }
 
-export interface Person {
+export interface IPerson {
   id: number;
   name: string;
   original_name?: string;
@@ -23,13 +23,13 @@ export interface Person {
   gender?: number;
   known_for_department?: string;
   profile_path: string | null;
-  known_for?: (Movie | TVShow)[];
-  roles?: Role[];
+  known_for?: (IMovie | ITVShow)[];
+  roles?: IRole[];
 }
 
-export interface PersonResponse {
+export interface IPersonResponse {
   page: number;
-  results: Person[];
+  results: IPerson[];
   total_pages: number;
   total_results: number;
 }

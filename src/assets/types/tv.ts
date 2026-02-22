@@ -1,6 +1,35 @@
-import type { Genre, ProductionCompany } from "./movie";
+import type { IGenre, IProductionCompany, IVideoResponse } from "./movie";
 
-export interface TVShow {
+export interface ISeason {
+  id: number;
+  air_date: string;
+  episode_count: number;
+  name: string;
+  overview: string;
+  poster_path: string | null;
+  season_number: number;
+}
+
+export interface INetwork {
+  id: number;
+  name: string;
+  logo_path: string | null;
+  origin_country: string;
+}
+
+export interface IAggregateRole {
+  credit_id: string;
+  character: string;
+  episode_count: number;
+}
+
+export interface IAggregateJob {
+  credit_id: string;
+  job: string;
+  episode_count: number;
+}
+
+export interface ITVShow {
   id: number;
   name: string;
   original_name?: string;
@@ -16,60 +45,7 @@ export interface TVShow {
   original_language?: string;
 }
 
-export interface TVShowResponse {
-  page: number;
-  results: TVShow[];
-  total_pages: number;
-  total_results: number;
-}
-
-export interface Season {
-  id: number;
-  air_date: string;
-  episode_count: number;
-  name: string;
-  overview: string;
-  poster_path: string | null;
-  season_number: number;
-}
-
-export interface Network {
-  id: number;
-  name: string;
-  logo_path: string | null;
-  origin_country: string;
-}
-
-export interface TVShowDetails extends Omit<TVShow, "genre_ids"> {
-  genres?: Genre[];
-  created_by?: Array<{
-    id: number;
-    name: string;
-    profile_path: string | null;
-  }>;
-  episode_run_time?: number[];
-  number_of_episodes?: number;
-  number_of_seasons?: number;
-  seasons?: Season[];
-  networks?: Network[];
-  status?: string;
-  tagline?: string;
-  homepage?: string;
-}
-
-export interface AggregateRole {
-  credit_id: string;
-  character: string;
-  episode_count: number;
-}
-
-export interface AggregateJob {
-  credit_id: string;
-  job: string;
-  episode_count: number;
-}
-
-export interface AggregateCastMember {
+export interface IAggregateCastMember {
   id: number;
   name: string;
   original_name: string;
@@ -79,21 +55,49 @@ export interface AggregateCastMember {
   popularity?: number;
   known_for_department: string;
   total_episode_count: number;
-  roles: AggregateRole[];
+  roles: IAggregateRole[];
 }
 
-export interface AggregateCrewMember {
+export interface IAggregateCrewMember {
   id: number;
   name: string;
   original_name: string;
   profile_path: string | null;
   department: string;
   total_episode_count: number;
-  jobs: AggregateJob[];
+  jobs: IAggregateJob[];
 }
 
-export interface TvCreditsResponse {
+export interface ITVShowResponse {
+  page: number;
+  results: ITVShow[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface ITvCreditsResponse {
   id: number;
-  cast: AggregateCastMember[];
-  crew: AggregateCrewMember[];
+  cast: IAggregateCastMember[];
+  crew: IAggregateCrewMember[];
+}
+
+export interface ITVShowDetails extends Omit<ITVShow, "genre_ids"> {
+  genres?: IGenre[];
+  created_by?: Array<{
+    id: number;
+    name: string;
+    profile_path: string | null;
+  }>;
+  episode_run_time?: number[];
+  number_of_episodes?: number;
+  number_of_seasons?: number;
+  seasons?: ISeason[];
+  networks?: INetwork[];
+  status?: string;
+  tagline?: string;
+  homepage?: string;
+  aggregate_credits?: ITvCreditsResponse;
+  recommendations?: ITVShowResponse;
+  similar?: ITVShowResponse;
+  videos?: IVideoResponse;
 }

@@ -1,4 +1,41 @@
-export interface Movie {
+import { IGenre } from ".";
+
+export interface IProductionCompany {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
+}
+
+export interface ICastMember {
+  id: number;
+  name: string;
+  original_name: string;
+  character: string;
+  profile_path: string | null;
+  order: number;
+  gender?: number;
+  popularity?: number;
+}
+
+export interface ICrewMember {
+  id: number;
+  name: string;
+  original_name: string;
+  profile_path: string | null;
+  department: string;
+  job: string;
+}
+
+export interface IVideo {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+}
+
+export interface IMovie {
   id: number;
   title: string;
   overview?: string;
@@ -15,27 +52,25 @@ export interface Movie {
   adult?: boolean;
 }
 
-export interface MovieResponse {
+export interface IMovieResponse {
   page: number;
-  results: Movie[];
+  results: IMovie[];
   total_pages: number;
   total_results: number;
 }
 
-export interface Genre {
+export interface IMovieCreditsResponse {
   id: number;
-  name: string;
+  cast: ICastMember[];
+  crew: ICrewMember[];
 }
 
-export interface ProductionCompany {
-  id: number;
-  logo_path: string | null;
-  name: string;
-  origin_country: string;
+export interface IVideoResponse {
+  result: IVideo[];
 }
 
-export interface MovieDetails extends Omit<Movie, "genre_ids"> {
-  genres?: Genre[];
+export interface IMovieDetails extends Omit<IMovie, "genre_ids"> {
+  genres?: IGenre[];
   budget?: number;
   revenue?: number;
   runtime?: number | null;
@@ -43,31 +78,9 @@ export interface MovieDetails extends Omit<Movie, "genre_ids"> {
   tagline?: string;
   homepage?: string;
   imdb_id?: string;
-  production_companies?: ProductionCompany[];
-}
-
-export interface CastMember {
-  id: number;
-  name: string;
-  original_name: string;
-  character: string;
-  profile_path: string | null;
-  order: number;
-  gender?: number;
-  popularity?: number;
-}
-
-export interface CrewMember {
-  id: number;
-  name: string;
-  original_name: string;
-  profile_path: string | null;
-  department: string;
-  job: string;
-}
-
-export interface MovieCreditsResponse {
-  id: number;
-  cast: CastMember[];
-  crew: CrewMember[];
+  production_companies?: IProductionCompany[];
+  credits?: IMovieCreditsResponse;
+  recommendations?: IMovieResponse;
+  similar?: IMovieResponse;
+  videos?: IVideoResponse;
 }
