@@ -1,7 +1,7 @@
 import { MediaItem } from "@/assets/types";
-import { MovieCreditsResponse } from "@/assets/types/movie";
-import { MovieResponse } from "@/assets/types/movie";
-import { TvCreditsResponse, TVShowResponse } from "@/assets/types/tv";
+import { IMovieCreditsResponse, IMovieDetails } from "@/assets/types/movie";
+import { IMovieResponse } from "@/assets/types/movie";
+import { ITvCreditsResponse, ITVShowDetails, ITVShowResponse } from "@/assets/types/tv";
 
 export type FormattedCredit = MediaItem & {
   character: string;
@@ -15,23 +15,23 @@ export interface OrganizedCredits {
 }
 
 //* Selects para as querys
-export const selectAsMovie = (data: MovieResponse): MediaItem[] => {
+export const selectAsMovie = (data: IMovieResponse): MediaItem[] => {
   return data.results.map((item) => ({
     ...item,
     media_type: "movie" as const,
   }));
 };
 
-export const selectAsShow = (data: TVShowResponse): MediaItem[] => {
+export const selectAsShow = (data: ITVShowResponse): MediaItem[] => {
   return data.results.map((item) => ({
     ...item,
     media_type: "tv" as const,
   }));
 };
 
-export const selectMovieCredits = (data: MovieCreditsResponse): OrganizedCredits => {
+export const selectMovieCredits = (data: IMovieCreditsResponse): OrganizedCredits => {
   return {
-    id: data.id,
+    id: data.id || 0,
     //* Elenco
     cast: (data.cast || []).map((item) => ({
       ...item,
@@ -48,7 +48,7 @@ export const selectMovieCredits = (data: MovieCreditsResponse): OrganizedCredits
   };
 };
 
-export const selectTVShowCredits = (data: TvCreditsResponse): OrganizedCredits => {
+export const selectTVShowCredits = (data: ITvCreditsResponse): OrganizedCredits => {
   const cast = data.cast || [];
   const crew = data.crew || [];
 
@@ -71,5 +71,39 @@ export const selectTVShowCredits = (data: TvCreditsResponse): OrganizedCredits =
         job: mainJob,
       };
     }),
+  };
+};
+
+export type MediaDetailsItem =
+  | (IMovieDetails & {
+      media_type: "movie";
+      formatted_credits?: OrganizedCredits;
+    })
+  | (ITVShowDetails & {
+      media_type: "tv";
+      formatted_credits?: OrganizedCredits;
+    });
+
+export const selectMediaDetails = (
+  data: IMovieDetails | ITVShowDetails,
+  type: "movie" | "tv",
+): MediaDetailsItem => {
+  if (type === "movie") {
+    const movieData = data as IMovieDetails;
+    return {
+      ...movieData,
+      media_type: "movie" as const,
+      formatted_credits: movieData.credits ? selectMovieCredits(movieData.credits) : undefined,
+    };
+  }
+
+  const tvData = data as ITVShowDetails;
+  return {
+    ...tvData,
+    media_type: "tv" as const,
+
+    formatted_credits: tvData.aggregate_credits
+      ? selectTVShowCredits(tvData.aggregate_credits)
+      : undefined,
   };
 };
