@@ -1,3 +1,5 @@
+import { TMDBImageSize } from "./types";
+
 export const ENDPOINTS = {
   MOVIES: {
     POPULAR: "/movie/popular",
@@ -54,3 +56,8 @@ export const ENDPOINTS = {
     },
   },
 } as const;
+
+export const getImageURL = (path: string | null | undefined, size: TMDBImageSize = "w500") => {
+  if (!path) return null;
+  return `${ENDPOINTS.IMAGES.BASE_URL}${size}${path}`;
+};
