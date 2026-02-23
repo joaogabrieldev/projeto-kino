@@ -50,6 +50,7 @@
   /** My Variables  */
 }
 @source "../widgets";
+@source "../components";
 
 :root {
   --radius: 0.625rem;
