@@ -1,16 +1,45 @@
 import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { select } from "motion/react-client";
+import { data, select } from "motion/react-client";
 
-import { DiscoveryResponse, Genre, GenresResponse, MediaItem } from "@/assets/types";
-import { MovieResponse } from "@/assets/types/movie";
-import { TVShowResponse } from "@/assets/types/tv";
+import { DiscoveryResponse, GenresResponse, MediaItem } from "@/assets/types";
+import { IGenre } from "@/assets/types/";
+import { IMovieDetails, IMovieResponse } from "@/assets/types/movie";
+import { ITVShowDetails, ITVShowResponse } from "@/assets/types/tv";
 import { ENDPOINTS } from "@/constants/endpoints";
-import { selectAsMovie, selectAsShow } from "@/utils/transformers";
+import { selectAsMovie, selectAsShow, selectMediaDetails } from "@/utils/transformers";
 
 import { api } from "./../services/api";
 
+export const useMediaByID = (type: "movie" | "tv", id: string) => {
+  type QueryReturn = IMovieDetails | ITVShowDetails;
+
+  return useQuery({
+    queryKey: [type, id],
+    queryFn: async () => {
+      const appendParams =
+        type === "movie"
+          ? "credits,recommendations,videos,similar"
+          : "aggregate_credits,recommendations,videos,similar";
+
+      const { data } = await api.get<QueryReturn>(`${type}/${id}`, {
+        params: {
+          language: "pt-BR",
+          append_to_response: appendParams,
+        },
+      });
+
+      return data;
+    },
+
+    select: (data) => selectMediaDetails(data, type),
+
+    enabled: !!id && !!type,
+    staleTime: Infinity,
+  });
+};
+
 export const useGenresList = (type: "movie" | "tv") => {
-  return useQuery<Genre[]>({
+  return useQuery<IGenre[]>({
     queryKey: ["genres-list", type],
     queryFn: async () => {
       const { data } = await api.get<GenresResponse>(ENDPOINTS.GENRES.GET_GENRE_LIST(type), {
@@ -51,8 +80,8 @@ export const useMediaByGenre = (
 
     select: (data): MediaItem[] => {
       return type === "movie"
-        ? selectAsMovie(data as unknown as MovieResponse)
-        : selectAsShow(data as unknown as TVShowResponse);
+        ? selectAsMovie(data as unknown as IMovieResponse)
+        : selectAsShow(data as unknown as ITVShowResponse);
     },
 
     enabled: Array.isArray(genreID) ? genreID.length > 0 : !!genreID,
@@ -81,8 +110,8 @@ export const useTrending = (type: "movie" | "tv" = "movie", timeWindow: "day" | 
 
     select: (data): MediaItem[] => {
       return type === "movie"
-        ? selectAsMovie(data as unknown as MovieResponse)
-        : selectAsShow(data as unknown as TVShowResponse);
+        ? selectAsMovie(data as unknown as IMovieResponse)
+        : selectAsShow(data as unknown as ITVShowResponse);
     },
 
     staleTime: 1000 * 60 * 60,
@@ -143,8 +172,8 @@ export const useDiscoverMedia = (type: "movie" | "tv", filters: DiscoverFilters 
       return {
         results:
           type === "movie"
-            ? selectAsMovie(data as MovieResponse)
-            : selectAsShow(data as TVShowResponse),
+            ? selectAsMovie(data as IMovieResponse)
+            : selectAsShow(data as ITVShowResponse),
 
         totalPages: data.total_pages > 500 ? 500 : data.total_pages,
       };
