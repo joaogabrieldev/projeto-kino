@@ -74,7 +74,9 @@ export function renderStars(rating: number) {
   }
 
   if (hasHalfStars) {
-    starsArray.push(<StarHalf className="fill-yellow-400 text-yellow-400" width={20} />);
+    starsArray.push(
+      <StarHalf key="half-star" className="fill-yellow-400 text-yellow-400" width={20} />,
+    );
   }
 
   return <div className="flex gap-1">{starsArray}</div>;
