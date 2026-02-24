@@ -41,7 +41,7 @@ const ContentDetailsPage = ({ type, id }: IContentDetailsPage) => {
     return (
       <>
         <MovieDetailsHero
-          key={data.id}
+          key={`${data.id}-${data.title}`}
           id={data.id}
           title={data.title}
           overview={data.overview ?? ""}
