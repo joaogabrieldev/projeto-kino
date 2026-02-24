@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import type { IMovieResponse } from "@/assets/types/movie";
 import { IMovieCreditsResponse } from "@/assets/types/movie";
@@ -103,18 +103,24 @@ export const useNowPlayingMovies = () => {
   });
 };
 
-export const useMovieRecommendations = (movieID: number) => {
+export const useMovieRecommendations = (movieID: string | number, page: number = 1) => {
   return useQuery({
-    queryKey: ["movie-recommendations", movieID],
+    queryKey: ["movie-recommendations", Number(movieID), page],
     queryFn: async () => {
-      const { data } = await api.get<IMovieResponse>(ENDPOINTS.MOVIES.RECOMMENDATIONS(movieID));
+      const { data } = await api.get<IMovieResponse>(
+        ENDPOINTS.MOVIES.RECOMMENDATIONS(Number(movieID)),
+        {
+          params: {
+            page: page,
+          },
+        },
+      );
       return data;
     },
 
-    select: (data) => selectAsMovie(data),
-
-    enabled: !!movieID && movieID > 0,
+    enabled: !!Number(movieID) && Number(movieID) > 0,
     staleTime: 1000 * 60 * 60,
+    placeholderData: keepPreviousData,
   });
 };
 
