@@ -55,16 +55,19 @@ const ContentRow = ({ title, data }: ContentRowProps) => {
             const linkHREF = item.media_type !== "person" ? `/${item.media_type}/${item.id}` : "";
 
             return (
-              <ContentCard
+              <CarouselItem
                 key={`${item.id}-${mediaType}-${index}`}
-                width={500}
-                height={750}
-                itemID={item.id}
-                linkHref={linkHREF}
-                imageSrc={imageSrc}
-                alt={itemTitle}
-                isCarousel={true}
-              />
+                className="basis-1/2 pl-2 md:basis-1/3 md:pl-4 lg:basis-1/4 xl:basis-1/5"
+              >
+                <ContentCard
+                  width={500}
+                  height={750}
+                  itemID={item.id}
+                  linkHref={linkHREF}
+                  imageSrc={imageSrc}
+                  alt={itemTitle}
+                />
+              </CarouselItem>
             );
           })}
         </CarouselContent>
