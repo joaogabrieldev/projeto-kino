@@ -1,8 +1,9 @@
 import React from "react";
 
 import { MediaItem } from "@/assets/types";
+import MovieDetailsBody from "@/components/MovieDetailsBody/MovieDetailsBody";
 import MovieDetailsHero from "@/components/MovieDetailsHero/MovieDetailsHero";
-import { ENDPOINTS, getImageURl } from "@/constants/endpoints";
+import { ENDPOINTS, getImageURL } from "@/constants/endpoints";
 import { TMDBImageSize } from "@/constants/types";
 import { useMediaByID } from "@/hooks/useContent";
 import { useMovieByID } from "@/hooks/useMovies";
@@ -32,20 +33,28 @@ const ContentDetailsPage = ({ type, id }: IContentDetailsPage) => {
     );
   }
 
-  const posterURL = data.poster_path ? getImageURl(data.poster_path, "original") : null;
+  const posterURL = data.poster_path ? getImageURL(data.poster_path, "original") : null;
 
   if (data.media_type === "movie") {
     const realease_date = data.release_date?.split("-")[0] ?? new Date().getFullYear().toString();
 
     return (
-      <MovieDetailsHero
-        title={data.title}
-        overview={data.overview ?? ""}
-        posterURL={posterURL}
-        realease_date={realease_date}
-        genres={data.genres ?? []}
-        runtime={data.runtime}
-      />
+      <>
+        <MovieDetailsHero
+          key={data.id}
+          id={data.id}
+          title={data.title}
+          overview={data.overview ?? ""}
+          posterURL={posterURL}
+          realease_date={realease_date}
+          genres={data.genres ?? []}
+          runtime={data.runtime}
+          vote_average={data.vote_average}
+          vote_count={data.vote_count}
+          credits={data.credits}
+        />
+        <MovieDetailsBody id={id} />
+      </>
     );
   }
 
