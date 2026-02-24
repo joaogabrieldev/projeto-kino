@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 
 export interface IStarProps {
-  key?: number;
+  key?: number | string;
   width: number;
 }
 
