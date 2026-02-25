@@ -4,6 +4,7 @@ import React from "react";
 import { MediaItem } from "@/assets/types";
 import MovieDetailsBody from "@/components/MovieDetailsBody/MovieDetailsBody";
 import MovieDetailsHero from "@/components/MovieDetailsHero/MovieDetailsHero";
+import ShowDetailsBody from "@/components/ShowDetailsBody/ShowDetailsBody";
 import ShowDetailsHero from "@/components/ShowDetailsHero/ShowDetailsHero";
 import { ENDPOINTS, getImageURL } from "@/constants/endpoints";
 import { TMDBImageSize } from "@/constants/types";
@@ -66,6 +67,7 @@ const ContentDetailsPage = ({ type, id }: IContentDetailsPage) => {
     return (
       <>
         <ShowDetailsHero
+          key={`${data.id}-${data.name}`}
           id={data.id}
           name={data.name}
           overview={data.overview ?? "Sem sinopse"}
@@ -79,6 +81,7 @@ const ContentDetailsPage = ({ type, id }: IContentDetailsPage) => {
           vote_average={data.vote_average}
           vote_count={data.vote_count}
         />
+        <ShowDetailsBody id={id} />
       </>
     );
   }
