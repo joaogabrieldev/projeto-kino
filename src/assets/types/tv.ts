@@ -1,4 +1,5 @@
-import type { IGenre, IProductionCompany, IVideoResponse } from "./movie";
+import { IGenre } from "./index";
+import type { IProductionCompany, IVideoResponse } from "./movie";
 
 export interface ISeason {
   id: number;
