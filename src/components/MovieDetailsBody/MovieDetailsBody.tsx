@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 import { IMovieResponse } from "@/assets/types/movie";
@@ -19,12 +20,12 @@ const MovieDetailsBody = ({ id }: IMovieDetailsBody) => {
   console.log("Dados que chegaram da API:", recommendations);
 
   return (
-    <div>
+    <div className="mb-14 flex flex-row gap-4 border-2 border-white px-8">
       <FilterCard
         totalPages={recommendations?.total_pages ?? 1}
         currentPage={currentPage}
         onPageChange={(value) => setCurrentPage(Number(value))}
-        pageTitle={""}
+        pageTitle={"Recomendados"}
         genreList={[]}
         selectedGenres={[]}
         onGenreSelect={() => {}}
