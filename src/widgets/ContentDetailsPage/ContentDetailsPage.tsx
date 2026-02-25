@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 
 import { MediaItem } from "@/assets/types";
 import MovieDetailsBody from "@/components/MovieDetailsBody/MovieDetailsBody";
 import MovieDetailsHero from "@/components/MovieDetailsHero/MovieDetailsHero";
+import ShowDetailsHero from "@/components/ShowDetailsHero/ShowDetailsHero";
 import { ENDPOINTS, getImageURL } from "@/constants/endpoints";
 import { TMDBImageSize } from "@/constants/types";
 import { useMediaByID } from "@/hooks/useContent";
@@ -44,7 +46,7 @@ const ContentDetailsPage = ({ type, id }: IContentDetailsPage) => {
           key={`${data.id}-${data.title}`}
           id={data.id}
           title={data.title}
-          overview={data.overview ?? ""}
+          overview={data.overview ?? "Sem sinopse"}
           posterURL={posterURL}
           realease_date={realease_date}
           genres={data.genres ?? []}
@@ -59,14 +61,25 @@ const ContentDetailsPage = ({ type, id }: IContentDetailsPage) => {
   }
 
   if (data.media_type === "tv") {
+    const posterURL = data.poster_path ? getImageURL(data.poster_path, "original") : null;
+
     return (
-      <div className="mx-auto mt-20 max-w-7xl px-4 text-white">
-        <h1 className="text-4xl font-bold">📺 Série: {data.name}</h1>
-        <p className="mt-2 text-sm text-gray-400">
-          Temporadas: {data.number_of_seasons} | Episódios: {data.number_of_episodes}
-        </p>
-        <p className="mt-4 text-gray-300">{data.overview}</p>
-      </div>
+      <>
+        <ShowDetailsHero
+          id={data.id}
+          name={data.name}
+          overview={data.overview ?? "Sem sinopse"}
+          posterURL={posterURL}
+          first_air_date={data.first_air_date ?? ""}
+          genres={data.genres ?? []}
+          number_of_seasons={data.number_of_seasons}
+          number_of_episodes={data.number_of_episodes}
+          created_by={data.created_by}
+          credits={data.aggregate_credits}
+          vote_average={data.vote_average}
+          vote_count={data.vote_count}
+        />
+      </>
     );
   }
 
