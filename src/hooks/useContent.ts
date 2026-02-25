@@ -4,9 +4,15 @@ import { data, select } from "motion/react-client";
 import { DiscoveryResponse, GenresResponse, MediaItem } from "@/assets/types";
 import { IGenre } from "@/assets/types/";
 import { IMovieDetails, IMovieResponse } from "@/assets/types/movie";
+import { IPersonDetails } from "@/assets/types/person";
 import { ITVShowDetails, ITVShowResponse } from "@/assets/types/tv";
 import { ENDPOINTS } from "@/constants/endpoints";
-import { selectAsMovie, selectAsShow, selectMediaDetails } from "@/utils/transformers";
+import {
+  selectAsMovie,
+  selectAsShow,
+  selectMediaDetails,
+  selectPersonDetails,
+} from "@/utils/transformers";
 
 import { api } from "./../services/api";
 
@@ -34,6 +40,29 @@ export const useMediaByID = (type: "movie" | "tv", id: string) => {
     select: (data) => selectMediaDetails(data, type),
 
     enabled: !!id && !!type,
+    staleTime: Infinity,
+  });
+};
+
+export const usePersonByID = (id: string) => {
+  return useQuery({
+    queryKey: ["person", id],
+    queryFn: async () => {
+      const appendParams = "combined_credits,external_ids,images";
+
+      const { data } = await api.get<IPersonDetails>(`person/${id}`, {
+        params: {
+          language: "pt-BR",
+          append_to_response: appendParams,
+        },
+      });
+
+      return data;
+    },
+
+    select: (data) => selectPersonDetails(data),
+
+    enabled: !!id,
     staleTime: Infinity,
   });
 };
