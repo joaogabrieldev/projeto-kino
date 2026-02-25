@@ -47,9 +47,7 @@ const MovieDetailsHero = ({
   );
 
   return (
-    <div
-      className={`mx-auto mt-28 mb-10 flex w-full max-w-7xl flex-row gap-6 border-2 border-white ${defaultSelection}`}
-    >
+    <div className={`mx-auto mt-28 mb-10 flex w-full max-w-7xl flex-row gap-6 ${defaultSelection}`}>
       <div className="shrink-0 rounded-2xl border-2 border-green-500 select-none">
         {load && <LoadingPoster />}
         <Image
@@ -58,35 +56,33 @@ const MovieDetailsHero = ({
           alt={title}
           width={342}
           height={513}
-          className="rounded-2xl shadow-md shadow-zinc-900"
+          className={`rounded-2xl shadow-md shadow-zinc-900 transition-opacity duration-500 ${load ? "opacity-0" : "opacity-100"}`}
           onLoad={() => setLoad(false)}
         />
       </div>
       <div className="min-w-0 flex-1 border-2 border-blue-500">
         <div className={`flex flex-row items-center gap-1 ${onest.className}`}>
-          <h1 className={`border-2 border-white text-4xl ${onest.className} font-semibold`}>
-            {title}
-          </h1>
-          <span className="text-2xl">({realease_date})</span>
+          <h1 className={`text-4xl ${onest.className} font-bold`}>{title}</h1>
+          <span className="text-2xl text-zinc-400">({realease_date})</span>
         </div>
-        <div>
-          <div>
-            <span className={`${onest.className}`}>
-              {genres.map((item) => item.name + " ").join("• ")}
-            </span>
-            <span>&minus; </span>
-            <span>{minutesToHours(runtime ?? 0)}</span>
-          </div>
+        <div className="text-zinc-300">
+          <span className={`${onest.className}`}>
+            {genres.map((item) => item.name + " ").join("• ")}
+          </span>
+          <span>&minus; </span>
+          <span className={`${onest.className}`}>{minutesToHours(runtime ?? 0)}</span>
         </div>
         <div className="my-4 flex flex-row items-center gap-2 select-none">
           <span className={`${onest.className} font-semibold`}>{vote_average?.toFixed(1)}</span>
           <span>{renderStars((vote_average ?? 0) / 2)}</span>
-          <span className={`${onest.className}`}>({vote_count} votos)</span>
+          <span className={`${onest.className} text-zinc-400`}>({vote_count} votos)</span>
         </div>
         {overview && (
           <div className="my-2 border-2 border-white">
-            <h2 className={`${onest.className} text-2xl select-none`}>Sinopse</h2>
-            <p className={`ml-4 max-w-2xl border-2 border-white text-[16px] ${onest.className}`}>
+            <h2 className={`${onest.className} text-2xl font-semibold select-none`}>Sinopse</h2>
+            <p
+              className={`max-w-2xl border-2 border-white text-[16px] text-zinc-300 ${onest.className}`}
+            >
               {overview}
             </p>
           </div>
