@@ -1,6 +1,7 @@
 import React from "react";
-import Animation from "../Animation/Animation";
+
 import Content from "../../widgets/Content/Content";
+import Animation from "../Animation/Animation";
 
 const Intro = () => {
   return (
