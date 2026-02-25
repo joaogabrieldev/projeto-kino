@@ -1,6 +1,7 @@
 import { MediaItem } from "@/assets/types";
 import { IMovieCreditsResponse, IMovieDetails } from "@/assets/types/movie";
 import { IMovieResponse } from "@/assets/types/movie";
+import { IPersonDetails } from "@/assets/types/person";
 import { ITvCreditsResponse, ITVShowDetails, ITVShowResponse } from "@/assets/types/tv";
 
 export type FormattedCredit = MediaItem & {
@@ -106,4 +107,28 @@ export const selectMediaDetails = (
       ? selectTVShowCredits(tvData.aggregate_credits)
       : undefined,
   };
+};
+
+export const selectPersonDetails = (data: IPersonDetails): IPersonDetails => {
+  const formattedData = { ...data };
+
+  if (formattedData.combined_credits?.cast) {
+    const uniqueCreditsMap = new Map();
+
+    formattedData.combined_credits.cast.forEach((credit) => {
+      if (credit.poster_path) {
+        if (!uniqueCreditsMap.has(credit.id)) {
+          uniqueCreditsMap.set(credit.id, credit);
+        }
+      }
+    });
+
+    const cleanCast = Array.from(uniqueCreditsMap.values());
+
+    cleanCast.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+
+    formattedData.combined_credits.cast = cleanCast;
+  }
+
+  return formattedData;
 };
