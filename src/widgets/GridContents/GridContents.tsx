@@ -31,7 +31,6 @@ const GridContents = ({ results }: IGridContentsProps) => {
             alt={contentAlt}
             width={250}
             height={750}
-            isCarousel={false}
           />
         );
       })}
