@@ -48,7 +48,7 @@ const MovieDetailsHero = ({
 
   return (
     <div
-      className={`mx-auto mt-28 mb-14 flex w-full max-w-7xl flex-row gap-6 border-2 border-white ${defaultSelection}`}
+      className={`mx-auto mt-28 mb-10 flex w-full max-w-7xl flex-row gap-6 border-2 border-white ${defaultSelection}`}
     >
       <div className="shrink-0 rounded-2xl border-2 border-green-500 select-none">
         {load && <LoadingPoster />}
@@ -86,7 +86,9 @@ const MovieDetailsHero = ({
         {overview && (
           <div className="my-2 border-2 border-white">
             <h2 className={`${onest.className} text-2xl select-none`}>Sinopse</h2>
-            <p className="ml-4 max-w-2xl border-2 border-white text-lg">{overview}</p>
+            <p className={`ml-4 max-w-2xl border-2 border-white text-[16px] ${onest.className}`}>
+              {overview}
+            </p>
           </div>
         )}
         <div className="mt-6 flex flex-wrap gap-8">
