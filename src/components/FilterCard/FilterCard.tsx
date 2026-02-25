@@ -60,7 +60,7 @@ const FilterCard = ({
   const hasAgeRatings = ageRatings.length > 0;
 
   return (
-    <div className="-mt-4 h-fit w-80 border-2 border-white text-white select-none">
+    <div className="-mt-4 h-fit w-80 rounded-xl border border-zinc-500 py-2 text-white select-none">
       {/* Título da Página */}
       <div className="">
         <span className={`pl-6 text-2xl font-bold ${onest.className}`}>{pageTitle}</span>
