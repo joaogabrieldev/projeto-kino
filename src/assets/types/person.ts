@@ -27,6 +27,42 @@ export interface IPerson {
   roles?: IRole[];
 }
 
+export interface IPersonCredit {
+  id: number;
+  media_type: "movie" | "tv";
+  poster_path: string | null;
+  backdrop_path: string | null;
+  overview: string;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+  credit_id: string;
+
+  title?: string;
+  original_title?: string;
+  release_date?: string;
+
+  name?: string;
+  original_name?: string;
+  first_air_date?: string;
+}
+
+export interface IPersonCastCredit extends IPersonCredit {
+  character: string;
+  episode_count?: number; // Só vem se for série
+}
+
+export interface IPersonCrewCredit extends IPersonCredit {
+  department: string;
+  job: string;
+  episode_count?: number;
+}
+
+export interface ICombinedCredits {
+  cast: IPersonCastCredit[];
+  crew: IPersonCrewCredit[];
+}
+
 export interface IPersonResponse {
   page: number;
   results: IPerson[];
@@ -34,7 +70,7 @@ export interface IPersonResponse {
   total_results: number;
 }
 
-export interface PersonDetails {
+export interface IPersonDetails {
   id: number;
   name: string;
   also_known_as?: string[];
@@ -46,4 +82,8 @@ export interface PersonDetails {
   profile_path: string | null;
   imdb_id?: string;
   homepage: string | null;
+
+  known_for_department: string;
+  popularity?: number;
+  combined_credits?: ICombinedCredits;
 }
