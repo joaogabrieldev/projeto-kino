@@ -104,21 +104,20 @@ export const useNowPlayingMovies = () => {
 };
 
 export const useMovieRecommendations = (movieID: string | number, page: number = 1) => {
+  const movie_ID = Number(movieID);
+
   return useQuery({
-    queryKey: ["movie-recommendations", Number(movieID), page],
+    queryKey: ["movie-recommendations", movie_ID, page],
     queryFn: async () => {
-      const { data } = await api.get<IMovieResponse>(
-        ENDPOINTS.MOVIES.RECOMMENDATIONS(Number(movieID)),
-        {
-          params: {
-            page: page,
-          },
+      const { data } = await api.get<IMovieResponse>(ENDPOINTS.MOVIES.RECOMMENDATIONS(movie_ID), {
+        params: {
+          page: page,
         },
-      );
+      });
       return data;
     },
 
-    enabled: !!Number(movieID) && Number(movieID) > 0,
+    enabled: !!movie_ID && movie_ID > 0,
     staleTime: 1000 * 60 * 60,
     placeholderData: keepPreviousData,
   });
