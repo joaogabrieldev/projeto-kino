@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { use } from "react";
 
-const page = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+import ContentDetailsPage from "@/widgets/ContentDetailsPage/ContentDetailsPage";
+
+interface ITVShowPage {
+  params: Promise<{
+    id: string;
+  }>;
 }
 
-export default page
+const TVShowPage = ({ params }: ITVShowPage) => {
+  const { id } = use(params);
+
+  return (
+    <div className="mt-20 text-white">
+      <ContentDetailsPage key={id} id={id} type="tv" />
+    </div>
+  );
+};
+
+export default TVShowPage;
