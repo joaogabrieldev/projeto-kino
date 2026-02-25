@@ -70,7 +70,7 @@ export function renderStars(rating: number) {
   const hasHalfStars = finalRating % 1 !== 0;
 
   for (let i = 0; i < fullStars; i++) {
-    starsArray.push(<StarFilled width={20} />);
+    starsArray.push(<StarFilled key={`star-${i}`} width={20} />);
   }
 
   if (hasHalfStars) {
