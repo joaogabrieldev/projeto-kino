@@ -73,8 +73,7 @@ const PersonCard = ({ person }: PersonCardProps) => {
             <Image
               src={imageSrc}
               alt={person.name}
-              width={250}
-              height={750}
+              fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover transition-transform duration-400 ease-in-out group-hover:scale-105"
             />
