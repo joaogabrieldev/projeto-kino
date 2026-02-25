@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import type { ITvCreditsResponse, ITVShowResponse } from "@/assets/types/tv";
 import { ENDPOINTS } from "@/constants/endpoints";
@@ -15,7 +15,7 @@ export const useTVShowByID = (id: string) => {
           append_to_response: "aggregate_credits,recommendations,videos,similar",
         },
       });
-      
+
       return data;
     },
 
@@ -96,18 +96,23 @@ export const useAiringTodayTVShows = () => {
   });
 };
 
-export const useTVShowsRecommendations = (tvShowID: number) => {
+export const useTVShowsRecommendations = (tvShowID: string | number, page: number = 1) => {
+  const showID = Number(tvShowID);
+
   return useQuery({
-    queryKey: ["tv-recommendations", tvShowID],
+    queryKey: ["tv-recommendations", showID, page],
     queryFn: async () => {
-      const { data } = await api.get<ITVShowResponse>(ENDPOINTS.TV.RECOMMENDATIONS(tvShowID));
+      const { data } = await api.get<ITVShowResponse>(ENDPOINTS.TV.RECOMMENDATIONS(showID), {
+        params: {
+          page: page,
+        },
+      });
       return data;
     },
 
-    select: (data) => selectAsShow(data),
-
-    enabled: !!tvShowID && tvShowID > 0,
+    enabled: !!showID && showID > 0,
     staleTime: 1000 * 60 * 60,
+    placeholderData: keepPreviousData,
   });
 };
 
