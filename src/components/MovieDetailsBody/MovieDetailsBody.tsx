@@ -17,15 +17,13 @@ const MovieDetailsBody = ({ id }: IMovieDetailsBody) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data: recommendations, isLoading } = useMovieRecommendations(id, currentPage);
 
-  console.log("Dados que chegaram da API:", recommendations);
-
   return (
-    <div className="mb-14 flex flex-row gap-4 border-2 border-white px-8">
+    <div className="mb-14 flex flex-row gap-4 px-8">
       <FilterCard
         totalPages={recommendations?.total_pages ?? 1}
         currentPage={currentPage}
         onPageChange={(value) => setCurrentPage(Number(value))}
-        pageTitle={"Recomendados"}
+        pageTitle={"Recomendações"}
         genreList={[]}
         selectedGenres={[]}
         onGenreSelect={() => {}}
