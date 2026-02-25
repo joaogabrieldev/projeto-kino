@@ -2,12 +2,13 @@ import Image from "next/image";
 import React from "react";
 
 import { ICastMember } from "@/assets/types/movie";
+import { IAggregateCastMember } from "@/assets/types/tv";
 import CastCard from "@/components/CastCard/CastCard";
 import { getImageURL } from "@/constants/endpoints";
 import { onest } from "@/utils/fonts";
 
 interface ICastCarouselProps {
-  cast?: ICastMember[];
+  cast?: (ICastMember | IAggregateCastMember)[];
   title: string;
 }
 
@@ -27,13 +28,21 @@ const CastCarousel = ({ cast, title }: ICastCarouselProps) => {
       <div className="scrollbar-hide mx-auto flex max-w-7xl gap-4 overflow-x-auto px-4 pt-2 pb-4 select-none">
         {cast.slice(0, 25).map((actor) => {
           const profileURL = actor.profile_path ? getImageURL(actor.profile_path, "w185") : null;
+          const actorName = actor.name;
+
+          const finalCharacter =
+            "character" in actor
+              ? actor.character
+              : "roles" in actor && actor.roles.length > 0
+                ? actor.roles[0].character
+                : "Personagem";
 
           return (
             <CastCard
               key={actor.id}
               profileURL={profileURL ?? ""}
-              actorName={actor.name}
-              actorCharacter={actor.character}
+              actorName={actorName}
+              actorCharacter={finalCharacter}
             />
           );
         })}
