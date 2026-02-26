@@ -60,7 +60,7 @@ const FilterCard = ({
   const hasAgeRatings = ageRatings.length > 0;
 
   return (
-    <div className="-mt-4 h-fit w-80 rounded-xl border border-zinc-500 py-2 text-white select-none">
+    <div className="-mt-4 h-fit w-80 rounded-xl border-zinc-500 py-2 text-white select-none">
       {/* Título da Página */}
       <div className="">
         <span className={`pl-6 text-2xl font-bold ${onest.className}`}>{pageTitle}</span>
@@ -74,9 +74,9 @@ const FilterCard = ({
       {/* Seleção de Gêneros */}
       {hasGenres && (
         <>
-          <div className="flex flex-col justify-center border-2 py-4">
+          <div className="flex flex-col justify-center py-4">
             <div>
-              <h2 className={`border-2 pl-4 ${onest.className} text-md font-semibold`}>Gêneros</h2>
+              <h2 className={`pl-4 ${onest.className} text-md font-semibold`}>Gêneros</h2>
             </div>
             <div className="mt-2 flex flex-wrap gap-x-2 gap-y-2.5 px-6">
               {genreList.map((item, index) => {
@@ -107,11 +107,9 @@ const FilterCard = ({
       {/* Classificação por Idade */}
       {hasAgeRatings && (
         <>
-          <div className="border-2 border-white py-2">
-            <h2 className={`border-2 pl-4 ${onest.className} text-md font-semibold`}>
-              Classificação
-            </h2>
-            <div className="my-2 flex flex-wrap gap-x-2 gap-y-2.5 border-2 border-red-600 px-6">
+          <div className="py-2">
+            <h2 className={`pl-4 ${onest.className} text-md font-semibold`}>Classificação</h2>
+            <div className="my-2 flex flex-wrap gap-x-2 gap-y-2.5 px-6">
               {ageRatings.map((item, index) => {
                 return (
                   <SelectBadge
@@ -131,7 +129,7 @@ const FilterCard = ({
       )}
 
       {/* Paginação */}
-      <div className="border-2 border-white">
+      <div className="">
         <Paginations.PaginationCardDefault
           page={currentPage}
           onPageChange={onPageChange}
