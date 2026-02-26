@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+}
+
+/** Light Mode */
+:root {
+  --scrollbar-track-background: #c4c4c4;
+  --scrollbar-thumb: #a10000;
+}
+
+/** Dark Mode */
+.dark {
+  --scrollbar-track-background: #141414;
+  --scrollbar-thumb: #d4af37;
+}
