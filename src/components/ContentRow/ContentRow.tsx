@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import React from "react";
 
 import { MediaItem } from "@/assets/types/index";
@@ -25,6 +26,8 @@ interface ContentRowProps {
 }
 
 const ContentRow = ({ title, data }: ContentRowProps) => {
+  const { theme } = useTheme();
+
   if (!data || data.length === 0) return null;
 
   return (
