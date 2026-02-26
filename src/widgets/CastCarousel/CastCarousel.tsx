@@ -6,9 +6,10 @@ import { IAggregateCastMember } from "@/assets/types/tv";
 import CastCard from "@/components/CastCard/CastCard";
 import { getImageURL } from "@/constants/endpoints";
 import { onest } from "@/utils/fonts";
+import { IPersonCastCredit } from "@/assets/types/person";
 
 interface ICastCarouselProps {
-  cast?: (ICastMember | IAggregateCastMember)[];
+  cast?: (ICastMember | IAggregateCastMember | IPersonCastCredit)[];
   title: string;
 }
 
@@ -27,8 +28,21 @@ const CastCarousel = ({ cast, title }: ICastCarouselProps) => {
 
       <div className="scrollbar-hide mx-auto flex max-w-7xl gap-4 overflow-x-auto px-4 pt-2 pb-4 select-none">
         {cast.slice(0, 25).map((actor) => {
-          const profileURL = actor.profile_path ? getImageURL(actor.profile_path, "w185") : null;
-          const actorName = actor.name;
+          const imagePath =
+            "profile_path" in actor && actor.profile_path
+              ? actor.profile_path
+              : "poster_path" in actor && actor.poster_path
+                ? actor.poster_path
+                : null;
+
+          const imageURL = imagePath ? getImageURL(imagePath, "w185") : null;
+
+          const displayName =
+            "title" in actor && actor.title
+              ? actor.title
+              : "name" in actor && actor.name
+                ? actor.name
+                : "Desconhecido";
 
           const finalCharacter =
             "character" in actor
@@ -39,9 +53,10 @@ const CastCarousel = ({ cast, title }: ICastCarouselProps) => {
 
           return (
             <CastCard
+              imageHref={`/person/${actor.id}`}
               key={actor.id}
-              profileURL={profileURL ?? ""}
-              actorName={actorName}
+              profileURL={imageURL ?? ""}
+              actorName={displayName}
               actorCharacter={finalCharacter}
             />
           );
