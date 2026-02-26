@@ -48,7 +48,7 @@ const MovieDetailsHero = ({
 
   return (
     <div className={`mx-auto mt-28 mb-10 flex w-full max-w-7xl flex-row gap-6 ${defaultSelection}`}>
-      <div className="shrink-0 rounded-2xl border-2 border-green-500 select-none">
+      <div className="shrink-0 rounded-2xl select-none">
         {load && <LoadingPoster />}
         <Image
           key={id}
@@ -60,7 +60,7 @@ const MovieDetailsHero = ({
           onLoad={() => setLoad(false)}
         />
       </div>
-      <div className="min-w-0 flex-1 border-2 border-blue-500">
+      <div className="min-w-0 flex-1">
         <div className={`flex flex-row items-center gap-1 ${onest.className}`}>
           <h1 className={`text-4xl ${onest.className} font-bold`}>{title}</h1>
           <span className="text-2xl text-zinc-400">({realease_date})</span>
@@ -78,13 +78,9 @@ const MovieDetailsHero = ({
           <span className={`${onest.className} text-zinc-400`}>({vote_count} votos)</span>
         </div>
         {overview && (
-          <div className="my-2 border-2 border-white">
+          <div className="my-2">
             <h2 className={`${onest.className} text-2xl font-semibold select-none`}>Sinopse</h2>
-            <p
-              className={`max-w-2xl border-2 border-white text-[16px] text-zinc-300 ${onest.className}`}
-            >
-              {overview}
-            </p>
+            <p className={`max-w-2xl text-[16px] text-zinc-300 ${onest.className}`}>{overview}</p>
           </div>
         )}
         <div className="mt-6 flex flex-wrap gap-8">
