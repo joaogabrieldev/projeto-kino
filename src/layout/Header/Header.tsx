@@ -60,10 +60,10 @@ const Header = () => {
   );
   const headerRightLayout = isHomePage ? (
     <div className="flex flex-row items-center gap-8">
-      <span className="">
+      <span>
         <Nav />
       </span>
-      <span className="">
+      <span>
         <ModeButton height="h-10" width="w-10" iconSize={22} />
       </span>
     </div>
@@ -73,7 +73,11 @@ const Header = () => {
     </>
   );
 
-  const imageSrc = isHomePage ? (isDark ? KINO.src : KINO_INVERTED.src) : KINO.src;
+  const imageSrc = isHomePage
+    ? !headerBackground && isDark
+      ? KINO.src
+      : KINO_INVERTED.src
+    : KINO.src;
 
   return (
     <header
