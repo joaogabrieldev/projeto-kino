@@ -27,14 +27,19 @@ interface ContentRowProps {
 
 const ContentRow = ({ title, data }: ContentRowProps) => {
   const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   if (!data || data.length === 0) return null;
+
+  const themeSet = {
+    row_title: isDark ? "text-white" : "text-[#a10000]",
+  };
 
   return (
     <div className="group relative h-fit space-y-2 px-4 py-8 md:px-12">
       <div>
         <h2
-          className={`${onest.className} z-100 cursor-default text-2xl font-bold text-white transition-colors select-auto ${defaultSelection}`}
+          className={`${onest.className} z-100 cursor-default text-2xl font-bold ${themeSet.row_title} transition-colors select-auto ${defaultSelection}`}
         >
           {title}
         </h2>
