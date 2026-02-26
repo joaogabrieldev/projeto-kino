@@ -73,7 +73,7 @@ const Header = () => {
     </>
   );
 
-  const imageSrc = isDark ? KINO.src : KINO_INVERTED.src;
+  const imageSrc = isHomePage ? (isDark ? KINO.src : KINO_INVERTED.src) : KINO.src;
 
   return (
     <header
