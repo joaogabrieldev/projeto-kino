@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import React from "react";
 import { useEffect, useState } from "react";
 
-import logo from "@/assets/images/KINO.png";
+import KINO from "@/assets/images/KINO.png";
+import KINO_INVERTED from "@/assets/images/KINO-inverted.png";
 import HeaderSearchBar from "@/components/HeaderSearchBar/HeaderSearchBar";
 import ModeButton from "@/pieces/ModeButton/ModeButton";
 import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
@@ -16,6 +18,9 @@ import Nav from "../../components/Nav/Nav";
 const Header = () => {
   const isScrolled = useHeaderScroll((state) => state.isScrolled);
   const setIsScrolled = useHeaderScroll((state) => state.setIsScrolled);
+
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -68,6 +73,8 @@ const Header = () => {
     </>
   );
 
+  const imageSrc = isDark ? KINO.src : KINO_INVERTED.src;
+
   return (
     <header
       className={`fixed top-0 left-0 z-100 flex w-full flex-row items-center justify-center transition-all duration-500 ${
@@ -77,7 +84,7 @@ const Header = () => {
       <div className="flex w-[20%] pl-6">{headerLeftLayout}</div>
       <div className="flex w-[40%] items-center justify-center">
         <Link href="/">
-          <Image src={logo.src} alt="Kino Logo" width={120} height={120} />
+          <Image src={imageSrc} alt="Kino Logo" width={120} height={120} />
         </Link>
       </div>
       <div className="w-[20%]">{headerRightLayout}</div>
