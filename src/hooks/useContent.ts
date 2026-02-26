@@ -44,15 +44,18 @@ export const useMediaByID = (type: "movie" | "tv", id: string) => {
   });
 };
 
-export const usePersonByID = (id: string) => {
+export const usePersonByID = (id: string | number) => {
+  const personID = Number(id);
+
   return useQuery({
     queryKey: ["person", id],
     queryFn: async () => {
       const appendParams = "combined_credits,external_ids,images";
 
-      const { data } = await api.get<IPersonDetails>(`person/${id}`, {
+      const { data } = await api.get<IPersonDetails>(`person/${personID}`, {
         params: {
           language: "pt-BR",
+
           append_to_response: appendParams,
         },
       });
