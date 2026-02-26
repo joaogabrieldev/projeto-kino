@@ -70,12 +70,18 @@ export function renderStars(rating: number) {
   const hasHalfStars = finalRating % 1 !== 0;
 
   for (let i = 0; i < fullStars; i++) {
-    starsArray.push(<StarFilled key={`star-${i}`} width={20} />);
+    starsArray.push(
+      <span key={`star-${i}`}>
+        <StarFilled width={20} />
+      </span>,
+    );
   }
 
   if (hasHalfStars) {
     starsArray.push(
-      <StarHalf key="half-star" className="fill-yellow-400 text-yellow-400" width={20} />,
+      <span key="half-star">
+        <StarHalf className="fill-yellow-400 text-yellow-400" width={20} />
+      </span>,
     );
   }
 
