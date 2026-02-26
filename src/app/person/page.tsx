@@ -2,7 +2,7 @@ import React from "react";
 
 import PersonHomePage from "@/widgets/PersonHomePage/PersonHomePage";
 
-const PersonPage = () => {
+const Person = () => {
   return (
     <div className="mt-30 mb-15">
       <PersonHomePage />
@@ -10,4 +10,4 @@ const PersonPage = () => {
   );
 };
 
-export default PersonPage;
+export default Person;
