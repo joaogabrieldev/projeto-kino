@@ -13,7 +13,7 @@ const TVShowPage = ({ params }: ITVShowPage) => {
 
   return (
     <div className="mt-20 text-white">
-      <ContentDetailsPage key={id} id={id} type="tv" />
+      <ContentDetailsPage id={id} type="tv" />
     </div>
   );
 };
