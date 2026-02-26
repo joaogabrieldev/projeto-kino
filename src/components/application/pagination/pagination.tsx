@@ -271,13 +271,13 @@ export const PaginationCardDefault = ({
         <div className="flex flex-1 justify-start">
           <Pagination.PrevTrigger asChild>
             <Button iconLeading={ArrowLeft} color="primary" size="sm">
-              {isDesktop ? "Previous" : undefined}
+              {isDesktop ? "Anterior" : undefined}
             </Button>
           </Pagination.PrevTrigger>
         </div>
         <Pagination.NextTrigger asChild>
           <Button iconTrailing={ArrowRight} color="primary" size="sm">
-            {isDesktop ? "Next" : undefined}
+            {isDesktop ? "Próxima" : undefined}
           </Button>
         </Pagination.NextTrigger>
       </div>
