@@ -1,5 +1,4 @@
 import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { data, select } from "motion/react-client";
 
 import { DiscoveryResponse, GenresResponse, MediaItem } from "@/assets/types";
 import { IGenre } from "@/assets/types/";
@@ -284,11 +283,17 @@ export const usePopularPeople = (page: number = 1) => {
       return data;
     },
 
-    select: (data) => ({
-      results: data.results,
-      totalPages: data.total_pages,
-    }),
+    select: (data) => {
+      const sortedResults = [...data.results].sort(
+        (a, b) => (b.popularity || 0) - (a.popularity || 0),
+      );
 
-    placeholderData: (previousData) => previousData,
+      return {
+        results: sortedResults,
+        totalPages: data.total_pages,
+      };
+    },
+
+    placeholderData: keepPreviousData,
   });
 };
