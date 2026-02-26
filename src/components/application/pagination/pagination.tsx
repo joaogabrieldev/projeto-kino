@@ -239,7 +239,7 @@ export const PaginationCardDefault = ({
       {...props}
       page={page}
       total={total}
-      className="border-secondary flex w-full flex-col items-center justify-between gap-3 border-t px-4 py-3 md:px-6 md:pt-3 md:pb-4"
+      className="border-secondary flex w-full flex-col items-center justify-between gap-3 px-4 py-3 md:px-6 md:pt-3 md:pb-4"
     >
       <Pagination.Context>
         {({ pages, currentPage, total }) => (
