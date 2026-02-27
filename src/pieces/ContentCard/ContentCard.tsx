@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import React from "react";
 
 interface IContentCardProps {
@@ -19,11 +20,20 @@ const ContentCard = ({
   width,
   height = 750,
 }: IContentCardProps) => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   const hasValidImage = imageSrc && imageSrc.trim() !== "" && !imageSrc.endsWith("null");
+
+  const themeSet = {
+    card_shadow: isDark ? "shadow-md shadow-zinc-900" : "shadow-md shadow-transparent",
+  };
 
   return (
     <Link href={linkHref} className="block h-full w-full min-w-[230px]">
-      <div className="relative z-20 aspect-[2/3] w-full cursor-pointer overflow-hidden rounded-sm bg-zinc-900 shadow-md shadow-zinc-900 transition-transform duration-300 hover:z-50 hover:scale-105">
+      <div
+        className={`relative z-20 aspect-[2/3] w-full cursor-pointer overflow-hidden rounded-sm ${themeSet.card_shadow} transition-transform duration-300 hover:z-50 hover:scale-103`}
+      >
         {hasValidImage ? (
           <Image
             src={imageSrc}
