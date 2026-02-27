@@ -56,16 +56,16 @@ const MovieDetailsHero = ({
           alt={title}
           width={342}
           height={513}
-          className={`rounded-2xl shadow-md shadow-zinc-900 transition-opacity duration-500 ${load ? "opacity-0" : "opacity-100"}`}
+          className={`rounded-2xl transition-opacity duration-500 dark:shadow-md dark:shadow-zinc-900 ${load ? "opacity-0" : "opacity-100"}`}
           onLoad={() => setLoad(false)}
         />
       </div>
       <div className="min-w-0 flex-1">
         <div className={`flex flex-row items-center gap-1 ${onest.className}`}>
-          <h1 className={`text-4xl ${onest.className} font-bold`}>{title}</h1>
-          <span className="text-2xl text-zinc-400">({realease_date})</span>
+          <h1 className={`text-4xl font-bold text-gray-600 dark:text-white`}>{title}</h1>
+          <span className="text-2xl text-zinc-500 dark:text-zinc-400">({realease_date})</span>
         </div>
-        <div className="text-zinc-300">
+        <div className="text-zinc-500 dark:text-zinc-300">
           <span className={`${onest.className}`}>
             {genres.map((item) => item.name + " ").join("• ")}
           </span>
@@ -73,32 +73,44 @@ const MovieDetailsHero = ({
           <span className={`${onest.className}`}>{minutesToHours(runtime ?? 0)}</span>
         </div>
         <div className="my-4 flex flex-row items-center gap-2 select-none">
-          <span className={`${onest.className} font-semibold`}>{vote_average?.toFixed(1)}</span>
+          <span className={`${onest.className} font-semibold text-gray-600 dark:text-white`}>
+            {vote_average?.toFixed(1)}
+          </span>
           <span>{renderStars((vote_average ?? 0) / 2)}</span>
-          <span className={`${onest.className} text-zinc-400`}>({vote_count} votos)</span>
+          <span className={`${onest.className} text-zinc-500 dark:text-zinc-400`}>
+            ({vote_count} votos)
+          </span>
         </div>
         {overview && (
           <div className="my-2">
-            <h2 className={`${onest.className} text-2xl font-semibold select-none`}>Sinopse</h2>
-            <p className={`max-w-2xl text-[16px] text-zinc-300 ${onest.className}`}>{overview}</p>
+            <h2
+              className={`${onest.className} text-2xl font-semibold text-gray-600 select-none dark:text-white`}
+            >
+              Sinopse
+            </h2>
+            <p
+              className={`max-w-2xl text-[16px] text-zinc-700 dark:text-zinc-300 ${onest.className}`}
+            >
+              {overview}
+            </p>
           </div>
         )}
         <div className="mt-6 flex flex-wrap gap-8">
           {directors && directors.length > 0 && (
             <div>
-              <p className={`text-lg font-bold ${onest.className}`}>
+              <p className={`text-lg font-bold text-gray-600 dark:text-white ${onest.className}`}>
                 {directors.map((d) => d.name).join(", ")}
               </p>
-              <p className="text-sm text-zinc-400">Direção</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">Direção</p>
             </div>
           )}
 
           {writers && writers.length > 0 && (
             <div>
-              <p className={`text-lg font-bold ${onest.className}`}>
+              <p className={`text-lg font-bold text-gray-600 dark:text-white ${onest.className}`}>
                 {writers.map((writter) => writter.name).join(", ")}
               </p>
-              <p className="text-sm text-zinc-400">Roteiro</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">Roteiro</p>
             </div>
           )}
         </div>
