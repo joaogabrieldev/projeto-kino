@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
+import { useTheme } from "next-themes";
 
 type Subtitles = {
   title: string;
@@ -23,18 +24,19 @@ interface IProps {
 
 const NavItem = ({ title, subtitles, titleHREF }: IProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const isScrolled = useHeaderScroll((state) => state.isScrolled);
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  const { theme } = useTheme();
 
+  const isHomePage = pathname === "/";
   const isHeaderTransparent = isHomePage && !isScrolled;
+  const isDark = theme === "dark";
 
   const hasSubtitles = subtitles && subtitles.length > 0;
 
   const navItemStyle = isHeaderTransparent
-    ? "text-white hover:text-gray-200"
-    : "text-[#c5a059] hover:text-[#d4af37]";
+    ? "text-[#141414] hover:text-gray-800 dark:text-white dark:hover:text-gray-200"
+    : "text-[#a10000] hover:text-[#870000] dark:text-[#c5a059] dark:hover:text-[#d4af37]";
 
   const { refs, floatingStyles } = useFloating({
     open: dropdownOpen,
