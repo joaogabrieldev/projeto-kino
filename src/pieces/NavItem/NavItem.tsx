@@ -6,10 +6,10 @@ import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import React, { useState } from "react";
 
 import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
-import { useTheme } from "next-themes";
 
 type Subtitles = {
   title: string;
