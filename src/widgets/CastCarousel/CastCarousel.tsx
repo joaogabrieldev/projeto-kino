@@ -21,7 +21,7 @@ const CastCarousel = ({ cast, title }: ICastCarouselProps) => {
   return (
     <section className="my-8">
       <h2
-        className={`mx-auto mb-4 max-w-7xl px-4 text-2xl font-bold text-white ${onest.className} select-none`}
+        className={`mx-auto mb-4 max-w-7xl px-4 text-2xl font-bold text-[#a10000] dark:text-white ${onest.className} select-none`}
       >
         {title}
       </h2>
