@@ -14,7 +14,7 @@ interface ICastCard {
 const CastCard = ({ actorName, actorCharacter, profileURL, imageHref }: ICastCard) => {
   return (
     <div className="w-[140px] min-w-[140px] flex-none overflow-hidden rounded-xl bg-zinc-900 shadow-lg transition-transform hover:scale-102">
-      <div className="relative h-[210px] w-full bg-zinc-800">
+      <div className="relative h-[210px] w-full">
         <Link href={imageHref}>
           {profileURL ? (
             <Image
