@@ -50,7 +50,7 @@ const FilterSearchBar = ({ isPersonSearch }: IFilterSearchBar) => {
   const placeholder = isPersonSearch ? "Busque por Artistas..." : "Busque por Títulos...";
 
   return (
-    <div className="flex w-full max-w-sm items-center rounded-full border border-gray-700 bg-gray-800 px-4 py-2 transition-colors focus-within:border-gray-200">
+    <div className="group flex w-full max-w-sm items-center rounded-full border-2 border-gray-700 bg-gray-800 px-4 py-2 transition-colors focus-within:border-[#CC0000] dark:focus-within:border-gray-200">
       <input
         type="text"
         placeholder={placeholder}
@@ -58,7 +58,10 @@ const FilterSearchBar = ({ isPersonSearch }: IFilterSearchBar) => {
         onChange={(event) => setInputValue(event.target.value)}
         className={`w-full bg-transparent text-white placeholder-gray-400 outline-none ${onest.className}`}
       />
-      <FiSearch size={20} className="ml-2 text-gray-400" />
+      <FiSearch
+        size={20}
+        className="ml-2 text-gray-400 transition-colors group-focus-within:text-[#CC0000] dark:group-focus-within:text-white"
+      />
     </div>
   );
 };
