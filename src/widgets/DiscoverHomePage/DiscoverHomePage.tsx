@@ -65,7 +65,6 @@ const DiscoverHomePage = ({ type, categorySlug }: IDiscoverHomePage) => {
 
   return (
     <div className="mt-28 mb-14 flex justify-center gap-x-4">
-      {/* <h1 className="text-white">Você está em {type}</h1> */}
       <FilterCard
         genreList={genreList}
         currentPage={currentPage}
