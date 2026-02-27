@@ -2,11 +2,11 @@ import Image from "next/image";
 import React from "react";
 
 import { ICastMember } from "@/assets/types/movie";
+import { IPersonCastCredit } from "@/assets/types/person";
 import { IAggregateCastMember } from "@/assets/types/tv";
 import CastCard from "@/components/CastCard/CastCard";
 import { getImageURL } from "@/constants/endpoints";
 import { onest } from "@/utils/fonts";
-import { IPersonCastCredit } from "@/assets/types/person";
 
 interface ICastCarouselProps {
   cast?: (ICastMember | IAggregateCastMember | IPersonCastCredit)[];
