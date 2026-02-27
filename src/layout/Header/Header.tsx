@@ -19,8 +19,8 @@ const Header = () => {
   const isScrolled = useHeaderScroll((state) => state.isScrolled);
   const setIsScrolled = useHeaderScroll((state) => state.setIsScrolled);
 
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -47,15 +47,11 @@ const Header = () => {
     };
   }, [isHomePage, setIsScrolled]);
 
-  const headerColor = isDark
-    ? "bg-[#8b0000] shadow-[#8b0000]/35"
-    : "bg-[#c4c4c4] shadow-[#c4c4c4]/35";
-
-  const headerBackground = isHomePage
-    ? isScrolled
-      ? headerColor
-      : "bg-transparent shadow-transparent"
-    : headerColor;
+  const isHeaderTransparent = isHomePage && !isScrolled;
+  
+  const headerBackground = isHeaderTransparent
+    ? "bg-transparent shadow-transparent"
+    : "bg-[#c4c4c4] shadow-[#c4c4c4]/35 dark:bg-[#8b0000] dark:shadow-[#8b0000]/35";
 
   const headerLeftLayout = isHomePage ? (
     <HeaderSearchBar isScrolled={isScrolled} />
@@ -77,8 +73,6 @@ const Header = () => {
     </>
   );
 
-  const imageSrc = isHomePage ? (isDark ? KINO.src : KINO_INVERTED.src) : KINO.src;
-
   return (
     <header
       className={`fixed top-0 left-0 z-100 flex w-full flex-row items-center justify-center transition-all duration-500 ${
@@ -88,7 +82,22 @@ const Header = () => {
       <div className="flex w-[20%] pl-6">{headerLeftLayout}</div>
       <div className="flex w-[40%] items-center justify-center">
         <Link href="/">
-          <Image src={imageSrc} alt="Kino Logo" width={120} height={120} />
+          <Image
+            src={KINO.src}
+            alt="Kino Logo Dark"
+            width={120}
+            height={120}
+            className="hidden dark:block"
+            priority
+          />
+          <Image
+            src={KINO_INVERTED.src}
+            alt="Kino Logo Light"
+            width={120}
+            height={120}
+            className="block dark:hidden"
+            priority
+          />
         </Link>
       </div>
       <div className="w-[20%]">{headerRightLayout}</div>
