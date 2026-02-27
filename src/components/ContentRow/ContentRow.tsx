@@ -26,8 +26,8 @@ interface ContentRowProps {
 }
 
 const ContentRow = ({ title, data }: ContentRowProps) => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   if (!data || data.length === 0) return null;
 
