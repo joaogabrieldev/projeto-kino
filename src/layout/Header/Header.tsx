@@ -47,11 +47,15 @@ const Header = () => {
     };
   }, [isHomePage, setIsScrolled]);
 
+  const headerColor = isDark
+    ? "bg-[#8b0000] shadow-[#8b0000]/35"
+    : "bg-[#c4c4c4] shadow-[#c4c4c4]/35";
+
   const headerBackground = isHomePage
     ? isScrolled
-      ? "bg-[#8b0000] shadow-[#8b0000]/35"
+      ? headerColor
       : "bg-transparent shadow-transparent"
-    : "bg-[#8b0000] shadow-[#8b0000]/35";
+    : headerColor;
 
   const headerLeftLayout = isHomePage ? (
     <HeaderSearchBar isScrolled={isScrolled} />
@@ -73,11 +77,7 @@ const Header = () => {
     </>
   );
 
-  const imageSrc = isHomePage
-    ? !headerBackground && isDark
-      ? KINO.src
-      : KINO_INVERTED.src
-    : KINO.src;
+  const imageSrc = isHomePage ? (isDark ? KINO.src : KINO_INVERTED.src) : KINO.src;
 
   return (
     <header
