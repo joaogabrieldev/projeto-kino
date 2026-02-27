@@ -23,21 +23,21 @@ const HeaderSearchBar = ({ isScrolled }: { isScrolled: boolean }) => {
   };
 
   const inputBorder = isScrolled
-    ? "focus-within:border-yellow-500"
-    : "focus-within:border-gray-200";
+    ? "border-3 focus-within:border-[#CC0000] dark:border-yellow-500 dark:border-2"
+    : "border-3 focus-within:border-[#CC0000] dark:border-2 dark:border-gray-200";
 
-  const buttonColor = isScrolled ? "text-yellow-500" : "text-white";
+  const buttonColor = isScrolled ? "text-[#CC0000] dark:text-yellow-500" : "text-white";
 
   return (
     <form
       onSubmit={handleSearch}
-      className={`flex w-full max-w-sm items-center rounded-full border-2 border-gray-700 bg-gray-800 px-4 py-2 transition-colors ${inputBorder}`}
+      className={`flex w-full max-w-sm items-center rounded-full border-gray-700 bg-gray-800 px-4 py-2 transition-colors duration-200 ease-in-out ${inputBorder}`}
     >
       <input
         type="text"
         placeholder="Buscar filme (Aperte Enter)..."
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(event) => setQuery(event.target.value)}
         className={`w-full bg-transparent text-white placeholder-gray-400 outline-none ${onest.className}`}
       />
       <button type="submit" className={`ml-2 transition-colors ${buttonColor}`}>
