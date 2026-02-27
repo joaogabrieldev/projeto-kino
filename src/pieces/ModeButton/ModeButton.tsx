@@ -1,8 +1,8 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 
 import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
@@ -14,7 +14,7 @@ interface IModeButton {
 }
 
 const ModeButton = ({ width, height, iconSize }: IModeButton) => {
-  const { resolvedTheme, setTheme, theme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   const isScrolled = useHeaderScroll((state) => state.isScrolled);
@@ -22,7 +22,7 @@ const ModeButton = ({ width, height, iconSize }: IModeButton) => {
   const isHomePage = pathname === "/";
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -52,7 +52,12 @@ const ModeButton = ({ width, height, iconSize }: IModeButton) => {
     >
       <div>
         {!isDark ? (
-          <Moon className={`${iconColor} transition-colors`} width={iconSize} height={iconSize} />
+          <Moon
+            className={`${iconColor} transition-colors`}
+            width={iconSize}
+            strokeWidth={2.5}
+            height={iconSize}
+          />
         ) : (
           <Sun className={`${iconColor} transition-colors`} width={iconSize} height={iconSize} />
         )}
