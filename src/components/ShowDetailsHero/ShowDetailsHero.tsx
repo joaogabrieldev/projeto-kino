@@ -72,32 +72,44 @@ const ShowDetailsHero = ({
 
       <div className="min-w-0 flex-1 text-white">
         <div className={`flex flex-row items-center gap-2 ${onest.className}`}>
-          <h1 className="text-4xl font-bold">{name}</h1>
-          <span className="text-2xl font-light text-zinc-400">({releaseYear})</span>
+          <h1 className="text-4xl font-bold text-gray-600 dark:text-white">{name}</h1>
+          <span className="text-2xl font-light text-zinc-500 dark:text-zinc-400">
+            ({releaseYear})
+          </span>
         </div>
 
-        <div className={`flex flex-row items-center text-zinc-300 ${onest.className}`}>
+        <div
+          className={`flex flex-row items-center text-zinc-500 dark:text-zinc-300 ${onest.className}`}
+        >
           <span>{genres?.map((item) => item.name).join(" • ")}</span>
           <span className="mx-2 text-zinc-500">&minus;</span>
           <span>
             {number_of_seasons} {number_of_seasons !== 1 ? "Temporadas" : "Temporada"}
           </span>
-          <span className="mx-2 text-zinc-500">•</span>
+          <span className="mx-2">•</span>
           <span>{number_of_episodes} Episódios</span>
         </div>
 
         <div className="my-4 flex flex-row items-center gap-2 select-none">
-          <span className={`${onest.className} font-semibold text-white`}>
+          <span className={`${onest.className} font-semibold text-gray-600 dark:text-white`}>
             {vote_average?.toFixed(1)}
           </span>
           <span>{renderStars((vote_average ?? 0) / 2)}</span>
-          <span className={`${onest.className} text-zinc-400`}>({vote_count} votos)</span>
+          <span className={`${onest.className} text-zinc-500 dark:text-zinc-400`}>
+            ({vote_count} votos)
+          </span>
         </div>
 
         {overview && (
           <div className="my-2">
-            <h2 className={`${onest.className} text-2xl font-semibold select-none`}>Sinopse</h2>
-            <p className={`max-w-2xl text-[16px] leading-relaxed text-zinc-300 ${onest.className}`}>
+            <h2
+              className={`${onest.className} text-2xl font-semibold text-gray-600 select-none dark:text-white`}
+            >
+              Sinopse
+            </h2>
+            <p
+              className={`max-w-2xl text-[16px] leading-relaxed text-zinc-700 dark:text-zinc-300 ${onest.className}`}
+            >
               {overview}
             </p>
           </div>
@@ -110,13 +122,13 @@ const ShowDetailsHero = ({
                 <p className={`text-lg font-bold ${onest.className}`}>
                   {created_by.map((creator) => creator.name).join(", ")}
                 </p>
-                <p className="text-sm text-zinc-400">Criador(es)</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">Criador(es)</p>
               </div>
             </div>
           )}
           {directors && directors.length > 0 && (
             <div>
-              <p className={`text-lg font-bold ${onest.className}`}>
+              <p className={`text-lg font-bold ${onest.className} text-gray-600 dark:text-white`}>
                 {directors
                   .slice(0, 3)
                   .map((d) => d.name)
@@ -128,13 +140,13 @@ const ShowDetailsHero = ({
 
           {writers && writers.length > 0 && (
             <div>
-              <p className={`text-lg font-bold ${onest.className}`}>
+              <p className={`text-lg font-bold ${onest.className} text-gray-600 dark:text-white`}>
                 {writers
                   .slice(0, 3)
                   .map((w) => w.name)
                   .join(", ")}
               </p>
-              <p className="text-sm text-zinc-400">Roteiro</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">Roteiro</p>
             </div>
           )}
         </div>
