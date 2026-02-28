@@ -59,7 +59,6 @@ O **Kino** é um catálogo completo de entretenimento que consome a [API do TMDB
 ### 🔜 Próximas Funcionalidades
 
 - ⭐ **Favoritos e Listas**: Sistema de favoritos e listas personalizadas
-- 🌐 **Internacionalização**: Suporte a múltiplos idiomas (i18n)
 - 📊 **Página de Tendências**: Seção dedicada aos conteúdos em alta do momento
 - 🎯 **Filtros Avançados**: Filtragem por gênero, ano, classificação e mais
 
