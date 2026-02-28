@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 
 import FilterCard from "@/components/FilterCard/FilterCard";
 import { usePopularPeople } from "@/hooks/useContent";
@@ -13,19 +13,27 @@ const PersonHomePage = () => {
 
   return (
     <div className="mt-12 mb-14 flex justify-center gap-x-4">
-      <FilterCard
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-        totalPages={personData?.totalPages ?? 1}
-        pageTitle={`Todos os Artistas`}
-        genreList={[]}
-        selectedGenres={[]}
-        onGenreSelect={() => {}}
-        selectedAge={undefined}
-        onAgeSelect={() => {}}
-        ageRatings={[]}
-        isPersonSearch
-      />
+      <Suspense
+        fallback={
+          <div className="h-20 w-full animate-pulse rounded-md bg-gray-200 dark:bg-zinc-800">
+            Carregando filtros...
+          </div>
+        }
+      >
+        <FilterCard
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          totalPages={personData?.totalPages ?? 1}
+          pageTitle={`Todos os Artistas`}
+          genreList={[]}
+          selectedGenres={[]}
+          onGenreSelect={() => {}}
+          selectedAge={undefined}
+          onAgeSelect={() => {}}
+          ageRatings={[]}
+          isPersonSearch
+        />
+      </Suspense>
       <PersonGrid results={personData?.results ?? []} />
     </div>
   );
