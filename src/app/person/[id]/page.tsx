@@ -1,6 +1,7 @@
 "use client";
 
 import React, { use } from "react";
+
 import PersonPage from "./../../../widgets/PersonPage/PersonPage";
 
 interface IPersonIDPage {
