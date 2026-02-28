@@ -19,7 +19,7 @@ const KnownForCarousel = ({ credits, title = "Conhecido(a) por" }: IKnownForCaro
   return (
     <section className="my-8">
       <h2
-        className={`mx-auto mb-4 max-w-7xl px-4 text-2xl font-bold text-white ${onest.className} select-none`}
+        className={`mx-auto mb-4 max-w-7xl px-4 text-2xl font-bold text-[#a10000] dark:text-white ${onest.className} select-none`}
       >
         {title}
       </h2>
@@ -38,7 +38,7 @@ const KnownForCarousel = ({ credits, title = "Conhecido(a) por" }: IKnownForCaro
               key={`${item.id}-${displayName}`}
               className="group flex w-[140px] shrink-0 flex-col overflow-hidden rounded-lg bg-zinc-900 shadow-md transition-transform duration-300 hover:scale-105 md:w-[160px]"
             >
-              <div className="relative aspect-[2/3] w-full bg-zinc-800">
+              <div className="relative aspect-[2/3] w-full">
                 {posterURL ? (
                   <Image
                     src={posterURL}
