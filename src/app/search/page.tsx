@@ -14,8 +14,10 @@ const SearchPage = ({ searchParams }: ISearchPage) => {
   if (!q) {
     return (
       <div className="mt-40 flex flex-col items-center justify-center text-white">
-        <h1 className="text-3xl font-bold">O que você quer assistir hoje?</h1>
-        <p className="mt-2 text-gray-400">
+        <h1 className="text-3xl font-bold text-[#850000] dark:text-white">
+          O que você quer assistir hoje?
+        </h1>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">
           Use a barra de pesquisa no topo para buscar filmes ou séries.
         </p>
       </div>
