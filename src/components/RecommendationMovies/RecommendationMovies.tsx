@@ -14,7 +14,7 @@ const RecommendationMovies = ({ recommendations }: IRecommendationMovies) => {
 
   if (movies.length === 0) {
     return (
-      <div className="flex w-full items-center justify-center py-10 text-zinc-400 select-none">
+      <div className="flex w-full items-center justify-center py-10 text-[#8b0000] select-none dark:text-zinc-400">
         Nenhuma recomendação encontrada para este título no momento.
       </div>
     );
