@@ -117,7 +117,7 @@ const ShowDetailsHero = ({
           {created_by && created_by.length > 0 && (
             <div>
               <div>
-                <p className={`text-lg font-bold ${onest.className}`}>
+                <p className={`text-lg font-bold text-gray-600 dark:text-white ${onest.className}`}>
                   {created_by.map((creator) => creator.name).join(", ")}
                 </p>
                 <p className="text-sm text-zinc-500 dark:text-zinc-400">Criador(es)</p>
