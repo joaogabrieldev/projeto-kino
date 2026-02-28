@@ -25,7 +25,8 @@ const SearchPage = ({ searchParams }: ISearchPage) => {
   return (
     <div className="mt-30 flex flex-col items-center justify-center text-white">
       <h1 className="border-2 text-3xl font-bold">
-        Resultados para: <span className="text-yellow-500">&quot;{q}&quot;</span>
+        Resultados para:{" "}
+        <span className="text-[#850000] dark:text-yellow-500">&quot;{q}&quot;</span>
       </h1>
 
       <SearchHomePage query={q} />
