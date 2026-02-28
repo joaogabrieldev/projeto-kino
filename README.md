@@ -221,7 +221,6 @@ projeto-kino/
 │   │   ├── data/               # Dados estáticos (navLinks.ts)
 │   │   ├── fonts/              # Fontes customizadas
 │   │   ├── images/             # Imagens do projeto
-│   │   ├── projects/           # Projetos do After Effects
 │   │   └── types/              # Tipos TypeScript do domínio
 │   │       ├── index.ts
 │   │       ├── movie.ts
@@ -233,7 +232,7 @@ projeto-kino/
 │   │   ├── base/               # Componentes base
 │   │   │   ├── buttons/
 │   │   │   └── button-group/
-│   │   ├── application/        # Componentes da aplicação
+│   │   ├── application/        # Componentes da aplicação (Untilted UI)
 │   │   │   └── pagination/
 │   │   ├── Animation/          # Componente de animação
 │   │   ├── BackdropSlider/     # Slider de backdrop
@@ -256,7 +255,7 @@ projeto-kino/
 │   ├── constants/              # Constantes da aplicação
 │   │   ├── endpoints.ts        # URLs da API
 │   │   ├── genres.ts           # Lista de gêneros
-│   │   └── types/              # Tipos constantes
+│   │   └── types/              # Tipos das constantes
 │   │
 │   ├── hooks/                  # Custom Hooks
 │   │   ├── use-breakpoint.ts   # Hook de breakpoints
@@ -285,7 +284,7 @@ projeto-kino/
 │   │
 │   ├── providers/              # Context Providers
 │   │   ├── ReactQueryProvider.tsx  # Provider do React Query
-│   │   └── ThemeProvider.tsx       # Provider de tema
+│   │   └── ThemeProvider.tsx       # Provider de Next-Theme
 │   │
 │   ├── services/               # Serviços e APIs
 │   │   └── api.ts              # Cliente Axios + configuração TMDB
@@ -296,10 +295,10 @@ projeto-kino/
 │   │
 │   ├── utils/                  # Funções utilitárias
 │   │   ├── defaults.ts         # Valores padrão
-│   │   ├── fonts.ts            # Configuração de fontes
+│   │   ├── fonts.ts            # Importação e definição de fontes
 │   │   ├── links.ts            # Geração de links
 │   │   ├── transformers.ts     # Transformadores de dados
-│   │   └── utilitaries.tsx     # Utilitários React
+│   │   └── utilitaries.tsx     # Funções Utilitárias React
 │   │
 │   └── widgets/                # Widgets complexos (composições)
 │       ├── CastCarousel/       # Carrossel de elenco
