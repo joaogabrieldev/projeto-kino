@@ -1,5 +1,3 @@
-import React from "react";
-
 import { navLinks } from "@/assets/data/navLinks";
 import NavItem from "@/pieces/NavItem/NavItem";
 

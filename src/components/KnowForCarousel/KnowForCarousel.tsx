@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import { IPersonCastCredit } from "@/assets/types/person";
 import { getImageURL } from "@/constants/endpoints";

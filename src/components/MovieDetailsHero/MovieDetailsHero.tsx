@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { Suspense, useState } from "react";
+import { useState } from "react";
 
 import { IGenre } from "@/assets/types";
 import { IMovieCreditsResponse, IProductionCompany } from "@/assets/types/movie";

@@ -1,8 +1,4 @@
 import Image from "next/image";
-import React from "react";
-
-import { onest } from "@/utils/fonts";
-
 interface IRecommendationCard {
   posterURL: string;
   movieTitle: string;

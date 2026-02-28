@@ -7,7 +7,6 @@ import { IPersonCastCredit } from "@/assets/types/person";
 import LoadingPoster from "@/pieces/LoadingPoster/LoadingPoster";
 import { defaultSelection } from "@/utils/defaults";
 import { onest } from "@/utils/fonts";
-import CastCarousel from "@/widgets/CastCarousel/CastCarousel";
 
 import KnownForCarousel from "../KnowForCarousel/KnowForCarousel";
 

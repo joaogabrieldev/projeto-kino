@@ -65,11 +65,5 @@ export const navLinks: NavLinks[] = [
   {
     title: "Artistas",
     href: "/person",
-    // subtitles: [
-    //   {
-    //     title: "Artistas",
-    //     slug: "/person",
-    //   },
-    // ],
   },
 ];

@@ -1,15 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { IGenre } from "@/assets/types";
-import { IMovieCreditsResponse } from "@/assets/types/movie";
 import { ITvCreditsResponse } from "@/assets/types/tv";
 import LoadingPoster from "@/pieces/LoadingPoster/LoadingPoster";
 import { defaultSelection } from "@/utils/defaults";
 import { onest } from "@/utils/fonts";
-import { OrganizedCredits } from "@/utils/transformers";
 import { renderStars } from "@/utils/utilitaries";
 import CastCarousel from "@/widgets/CastCarousel/CastCarousel";
 

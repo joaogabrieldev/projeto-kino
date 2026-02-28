@@ -1,4 +1,3 @@
-import React from "react";
 
 import PersonCard, { IPerson } from "@/components/PersonCard/PersonCard";
 

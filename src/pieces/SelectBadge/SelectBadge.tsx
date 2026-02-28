@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import { onest } from "@/utils/fonts";
 
 interface ISelectBadge {

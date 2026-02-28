@@ -1,15 +1,11 @@
 "use client";
-import React from "react";
 
-import { MediaItem } from "@/assets/types";
 import MovieDetailsBody from "@/components/MovieDetailsBody/MovieDetailsBody";
 import MovieDetailsHero from "@/components/MovieDetailsHero/MovieDetailsHero";
 import ShowDetailsBody from "@/components/ShowDetailsBody/ShowDetailsBody";
 import ShowDetailsHero from "@/components/ShowDetailsHero/ShowDetailsHero";
-import { ENDPOINTS, getImageURL } from "@/constants/endpoints";
-import { TMDBImageSize } from "@/constants/types";
+import { getImageURL } from "@/constants/endpoints";
 import { useMediaByID } from "@/hooks/useContent";
-import { useMovieByID } from "@/hooks/useMovies";
 import Loading from "@/pieces/Loading/Loading";
 
 interface IContentDetailsPage {

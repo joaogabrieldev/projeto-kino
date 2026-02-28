@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 import { onest } from "@/utils/fonts";

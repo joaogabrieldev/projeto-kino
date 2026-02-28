@@ -1,4 +1,4 @@
-import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { DiscoveryResponse, GenresResponse, MediaItem } from "@/assets/types";
 import { IGenre } from "@/assets/types/";

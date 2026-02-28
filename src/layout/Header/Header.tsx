@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import KINO from "@/assets/images/KINO.png";
 import KINO_INVERTED from "@/assets/images/KINO-inverted.png";
@@ -48,7 +47,7 @@ const Header = () => {
   }, [isHomePage, setIsScrolled]);
 
   const isHeaderTransparent = isHomePage && !isScrolled;
-  
+
   const headerBackground = isHeaderTransparent
     ? "bg-transparent shadow-transparent"
     : "bg-[#c4c4c4] shadow-[#c4c4c4]/35 dark:bg-[#8b0000] dark:shadow-[#8b0000]/35";

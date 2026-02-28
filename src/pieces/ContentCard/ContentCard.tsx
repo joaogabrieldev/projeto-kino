@@ -12,14 +12,7 @@ interface IContentCardProps {
   height?: number;
 }
 
-const ContentCard = ({
-  itemID,
-  linkHref,
-  imageSrc,
-  alt,
-  width,
-  height = 750,
-}: IContentCardProps) => {
+const ContentCard = ({ linkHref, imageSrc, alt }: IContentCardProps) => {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 

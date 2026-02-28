@@ -1,10 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { IMovieResponse } from "@/assets/types/movie";
 import { useMovieRecommendations } from "@/hooks/useMovies";
 import Loading from "@/pieces/Loading/Loading";
-import GridContents from "@/widgets/GridContents/GridContents";
 
 import FilterCard from "../FilterCard/FilterCard";
 import RecommendationMovies from "../RecommendationMovies/RecommendationMovies";

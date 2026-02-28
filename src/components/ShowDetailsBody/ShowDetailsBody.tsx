@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useTVShowsRecommendations } from "@/hooks/useTVShows";
 import Loading from "@/pieces/Loading/Loading";

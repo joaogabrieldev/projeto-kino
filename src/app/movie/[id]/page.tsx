@@ -1,9 +1,7 @@
 "use client";
 
-import React, { use } from "react";
+import { use } from "react";
 
-import { useMovieByID } from "@/hooks/useMovies";
-import Loading from "@/pieces/Loading/Loading";
 import ContentDetailsPage from "@/widgets/ContentDetailsPage/ContentDetailsPage";
 
 interface IMovieIDPage {

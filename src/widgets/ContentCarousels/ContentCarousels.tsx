@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
 import ContentRow from "@/components/ContentRow/ContentRow";
 import { MOVIE_GENRES, TV_GENRES } from "@/constants/genres";

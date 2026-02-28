@@ -1,5 +1,3 @@
-import React from "react";
-
 import PersonHomePage from "@/widgets/PersonHomePage/PersonHomePage";
 
 const Person = () => {

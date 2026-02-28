@@ -1,7 +1,7 @@
 import { StarHalf } from "lucide-react";
 import { JSX, useRef } from "react";
 
-import { MediaItem, MovieItem, TVItem } from "@/assets/types";
+import { MediaItem } from "@/assets/types";
 import StarFilled from "@/pieces/StarFilled/StarFilled";
 
 export function shuffleArray<T>(array: T[]): T[] {

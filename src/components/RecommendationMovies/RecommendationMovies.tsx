@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
 
 import { IMovieResponse } from "@/assets/types/movie";
-import { ENDPOINTS, getImageURL } from "@/constants/endpoints";
+import { getImageURL } from "@/constants/endpoints";
 import ContentCard from "@/pieces/ContentCard/ContentCard";
 
 interface IRecommendationMovies {

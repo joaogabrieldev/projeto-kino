@@ -2,7 +2,6 @@
 
 import { useTheme } from "next-themes";
 import React from "react";
-import { useState } from "react";
 
 import * as Paginations from "@/components/application/pagination/pagination";
 import SelectBadge from "@/pieces/SelectBadge/SelectBadge";
@@ -29,19 +28,8 @@ interface IFilterCardProps {
   onAgeSelect: React.Dispatch<React.SetStateAction<string | undefined>>;
   ageRatings: string[];
 
-  // //? Endpoint Select
-  // checked: boolean;
-  // setChecked: React.Dispatch<React.SetStateAction<boolean>>;
-
   isPersonSearch?: boolean;
 }
-
-const movieEndpointsTitles: string[] = [
-  "Mais Populares",
-  "Melhores Avaliados",
-  "Em Cartaz",
-  "Próximos Lançamentos",
-];
 
 const FilterCard = ({
   totalPages,

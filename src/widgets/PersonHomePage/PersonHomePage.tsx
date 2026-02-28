@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import FilterCard from "@/components/FilterCard/FilterCard";
 import { usePopularPeople } from "@/hooks/useContent";
 
-import GridContents from "../GridContents/GridContents";
 import PersonGrid from "../PersonGrid/PersonGrid";
 
 const PersonHomePage = () => {

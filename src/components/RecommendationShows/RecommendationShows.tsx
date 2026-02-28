@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
 
 import { ITVShowResponse } from "@/assets/types/tv";
-import { ENDPOINTS, getImageURL } from "@/constants/endpoints";
+import { getImageURL } from "@/constants/endpoints";
 import ContentCard from "@/pieces/ContentCard/ContentCard";
 
 interface IRecommendationShows {

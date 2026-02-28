@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState } from "react";
+import { use } from "react";
 
 import SearchPeopleHomePage from "@/widgets/SearchPeopleHomePage/SearchPeopleHomePage";
 

@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useHeaderScroll } from "@/stores/useHeaderScrollStore";
 

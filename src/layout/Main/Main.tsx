@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 
 import BackdropImages from "@/components/BackdropImages/BackdropImages";
 import SkeletonBackdropImage from "@/components/SkeletonBackdropImage/SkeletonBackdropImage";

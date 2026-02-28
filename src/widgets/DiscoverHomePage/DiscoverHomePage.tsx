@@ -1,14 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import React, { use, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
-import { MediaItem } from "@/assets/types";
 import FilterCard from "@/components/FilterCard/FilterCard";
-import { ENDPOINTS } from "@/constants/endpoints";
 import { GENRES_PT_BR, getGenreId } from "@/constants/genres";
 import { SortOption, useDiscoverMedia } from "@/hooks/useContent";
-import { onest } from "@/utils/fonts";
 import GridContents from "@/widgets/GridContents/GridContents";
 
 interface IDiscoverHomePage {
