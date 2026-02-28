@@ -67,6 +67,15 @@ export const styles = sortCx({
         "disabled:bg-disabled disabled:shadow-xs disabled:ring-disabled_subtle",
         // Icon styles
         "*:data-icon:text-button-primary-icon hover:*:data-icon:text-button-primary-icon_hover",
+
+        // Dark Mode Settings
+        "dark:bg-brand-solid dark:text-[#a10000] dark:shadow-xs-skeumorphic dark:ring-1 dark:ring-transparent dark:ring-inset dark:hover:bg-brand-solid_hover dark:data-loading:bg-brand-solid_hover",
+        // Inner border gradient
+        "dark:before:absolute dark:before:inset-px dark:before:border dark:before:border-[#a10000]/45 dark:before:mask-b-from-0%",
+        // Disabled styles
+        "dark:disabled:bg-disabled dark:disabled:shadow-xs dark:disabled:ring-disabled_subtle",
+        // Icon styles
+        "dark:*:data-icon:text-button-primary-icon dark:hover:*:data-icon:text-button-primary-icon_hover",
       ].join(" "),
     },
     secondary: {
@@ -87,13 +96,13 @@ export const styles = sortCx({
     },
     "outline-red": {
       root: [
-        "bg-brand-solid text-[#a10000] shadow-xs-skeumorphic ring-1 ring-transparent ring-inset hover:bg-brand-solid_hover data-loading:bg-brand-solid_hover",
+        "dark:bg-brand-solid dark:text-[#a10000] dark:shadow-xs-skeumorphic dark:ring-1 dark:ring-transparent dark:ring-inset dark:hover:bg-brand-solid_hover dark:data-loading:bg-brand-solid_hover",
         // Inner border gradient
-        "before:absolute before:inset-px before:border before:border-[#a10000]/45 before:mask-b-from-0%",
+        "dark:before:absolute dark:before:inset-px dark:before:border dark:before:border-[#a10000]/45 dark:before:mask-b-from-0%",
         // Disabled styles
-        "disabled:bg-disabled disabled:shadow-xs disabled:ring-disabled_subtle",
+        "dark:disabled:bg-disabled dark:disabled:shadow-xs dark:disabled:ring-disabled_subtle",
         // Icon styles
-        "*:data-icon:text-button-primary-icon hover:*:data-icon:text-button-primary-icon_hover",
+        "dark:*:data-icon:text-button-primary-icon dark:hover:*:data-icon:text-button-primary-icon_hover",
       ].join(" "),
     },
     "link-gray": {
