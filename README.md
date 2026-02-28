@@ -54,7 +54,6 @@ O **Kino** é um catálogo completo de entretenimento que consome a [API do TMDB
 - 📝 **Detalhes Completos**: Páginas dedicadas com informações detalhadas, elenco, trailers e recomendações
 - 🎠 **Carrosséis Interativos**: Navegação fluida por destaques e categorias com Embla Carousel
 - 🎨 **Modo Claro/Escuro**: Suporte completo a temas com alternância entre modo claro, escuro e automático (sistema)
-- 📱 **Design Responsivo**: Interface totalmente adaptável para desktop, tablet e mobile
 - ⚡ **Performance Otimizada**: Server-Side Rendering, cache inteligente com React Query e otimizações do Next.js
 
 ### 🔜 Próximas Funcionalidades
