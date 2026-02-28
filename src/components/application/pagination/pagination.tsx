@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowLeft, ArrowRight } from "@untitledui/icons";
-import { useTheme } from "next-themes";
 
 import { ButtonGroup, ButtonGroupItem } from "@/components/base/button-group/button-group";
 import { Button } from "@/components/base/buttons/button";
@@ -25,26 +24,16 @@ const PaginationItem = ({
   rounded?: boolean;
   isCurrent: boolean;
 }) => {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-
-  const themeSet = {
-    itemColor: isDark ? "text-gray-200" : "text-[#8b0000] hover:text-[#8b0000]",
-    selectedItemColor: isDark
-      ? "bg-[#8b0000]/80 text-[#d4af37] hover:text-[#d4af37]"
-      : "bg-[#8b0000]/80 text-gray-300 hover:text-gray-300",
-  };
-
   return (
     <Pagination.Item
       value={value}
       isCurrent={isCurrent}
       className={({ isSelected }) =>
         cx(
-          "outline-focus-ring hover:bg-primary_hover hover:text-secondary focus-visible:bg-primary_hover flex size-10 cursor-pointer items-center justify-center p-3 text-sm font-medium transition duration-100 ease-linear focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2",
-          themeSet.itemColor,
+          "outline-focus-ring hover:bg-primary_hover hover:text-secondary focus-visible:bg-primary_hover flex size-10 cursor-pointer items-center justify-center p-3 text-sm font-medium transition duration-100 ease-linear focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-gray-200",
           rounded ? "rounded-full" : "rounded-lg",
-          isSelected && themeSet.selectedItemColor,
+          isSelected &&
+            "bg-[#8b0000]/80 text-[#8b0000] text-gray-300 hover:text-[#8b0000] hover:text-gray-300 dark:bg-[#8b0000]/80 dark:text-[#d4af37] dark:hover:text-[#d4af37]",
         )
       }
     >
@@ -246,31 +235,6 @@ export const PaginationCardDefault = ({
 }: PaginationProps) => {
   const isDesktop = useBreakpoint("md");
 
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-
-  const themeSet = {
-    ellipsis_color: isDark ? "text-gray-200" : "text-[#8b0000]",
-    previous_button: isDark ? (
-      <Button iconLeading={ArrowLeft} color="primary" size="sm">
-        {isDesktop ? "Anterior" : undefined}
-      </Button>
-    ) : (
-      <Button iconLeading={ArrowLeft} color="outline-red" size="sm" className="">
-        {isDesktop ? "Anterior" : undefined}
-      </Button>
-    ),
-    next_button: isDark ? (
-      <Button iconTrailing={ArrowRight} color="primary" size="sm">
-        {isDesktop ? "Próxima" : undefined}
-      </Button>
-    ) : (
-      <Button iconTrailing={ArrowRight} color="outline-red" size="sm">
-        {isDesktop ? "Próxima" : undefined}
-      </Button>
-    ),
-  };
-
   return (
     <Pagination.Root
       {...props}
@@ -288,7 +252,7 @@ export const PaginationCardDefault = ({
                 ) : (
                   <Pagination.Ellipsis
                     key={index}
-                    className={`flex size-10 shrink-0 items-center justify-center ${themeSet.ellipsis_color}`}
+                    className={`flex size-10 shrink-0 items-center justify-center text-[#8b0000] dark:text-gray-200`}
                   >
                     &#8230;
                   </Pagination.Ellipsis>
@@ -306,9 +270,17 @@ export const PaginationCardDefault = ({
 
       <div className="flex flex-1 justify-end">
         <div className="flex flex-1 justify-start">
-          <Pagination.PrevTrigger asChild>{themeSet.previous_button}</Pagination.PrevTrigger>
+          <Pagination.PrevTrigger asChild>
+            <Button iconLeading={ArrowLeft} color="primary" size="sm">
+              {isDesktop ? "Anterior" : undefined}
+            </Button>
+          </Pagination.PrevTrigger>
         </div>
-        <Pagination.NextTrigger asChild>{themeSet.next_button}</Pagination.NextTrigger>
+        <Pagination.NextTrigger asChild>
+          <Button iconTrailing={ArrowRight} color="primary" size="sm">
+            {isDesktop ? "Próxima" : undefined}
+          </Button>
+        </Pagination.NextTrigger>
       </div>
     </Pagination.Root>
   );
