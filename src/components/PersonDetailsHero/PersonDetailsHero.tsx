@@ -8,6 +8,7 @@ import LoadingPoster from "@/pieces/LoadingPoster/LoadingPoster";
 import { defaultSelection } from "@/utils/defaults";
 import { onest } from "@/utils/fonts";
 import CastCarousel from "@/widgets/CastCarousel/CastCarousel";
+
 import KnownForCarousel from "../KnowForCarousel/KnowForCarousel";
 
 interface IPersonDetailsHero {
@@ -66,22 +67,26 @@ const PersonDetailsHero = ({
           alt={name}
           width={342}
           height={513}
-          className={`rounded-2xl shadow-md shadow-zinc-900 transition-opacity duration-500 ${load ? "opacity-0" : "opacity-100"}`}
+          className={`rounded-2xl shadow-md shadow-gray-500 transition-opacity duration-500 dark:shadow-zinc-900 ${load ? "opacity-0" : "opacity-100"}`}
           onLoad={() => setLoad(false)}
           priority
         />
       </div>
 
-      <div className="min-w-0 flex-1 text-white">
+      <div className="min-w-0 flex-1">
         <div className={`flex flex-row items-baseline gap-2 ${onest.className}`}>
-          <h1 className="text-4xl font-bold">{name}</h1>
-          {lifeSpan && <span className="text-2xl font-light text-zinc-400">({lifeSpan})</span>}
+          <h1 className="text-4xl font-bold text-gray-600 dark:text-white">{name}</h1>
+          {lifeSpan && (
+            <span className="text-2xl font-light text-zinc-500 dark:text-zinc-400">
+              ({lifeSpan})
+            </span>
+          )}
         </div>
 
         <div
-          className={`mt-2 flex flex-row flex-wrap items-center text-zinc-300 ${onest.className}`}
+          className={`mt-2 flex flex-row flex-wrap items-center text-zinc-500 dark:text-zinc-300 ${onest.className}`}
         >
-          <span className="font-semibold text-white">
+          <span className="font-semibold text-gray-600 dark:text-white">
             {translateDepartment(known_for_department)}
           </span>
           <span className="mx-2 text-zinc-500">•</span>
@@ -96,10 +101,14 @@ const PersonDetailsHero = ({
         </div>
 
         <div className="my-6">
-          <h2 className={`${onest.className} mb-2 text-2xl font-semibold select-none`}>
+          <h2
+            className={`${onest.className} mb-2 text-2xl font-semibold text-gray-600 select-none dark:text-white`}
+          >
             Biografia
           </h2>
-          <p className={`max-w-3xl text-[16px] leading-relaxed text-zinc-300 ${onest.className}`}>
+          <p
+            className={`max-w-3xl text-[16px] leading-relaxed text-zinc-700 dark:text-zinc-300 ${onest.className}`}
+          >
             {biography || `Não temos uma biografia em português para ${name}.`}
           </p>
         </div>
