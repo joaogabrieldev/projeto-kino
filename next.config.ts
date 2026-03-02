@@ -4,8 +4,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
-  unoptimized: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
