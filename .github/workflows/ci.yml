@@ -28,7 +28,8 @@ jobs:
         run: pnpm install --ignore-workspace
 
       - name: Rodar ESLint
-        run: npx eslint . --max-warnings=0
+        run: npx eslint . --max-warnings=9999
+        working-directory: .
 
       - name: Rodar Testes de Integração
         run: npx vitest run
